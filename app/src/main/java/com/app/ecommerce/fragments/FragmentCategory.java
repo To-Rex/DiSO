@@ -2,6 +2,7 @@ package com.app.ecommerce.fragments;
 
 import static com.app.ecommerce.utilities.Constant.GET_CATEGORY;
 
+import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -38,13 +40,12 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FragmentCategory extends Fragment implements AdapterCategory.ContactsAdapterListener {
 
-    private RecyclerView recyclerView;
     private List<Category> categoryList;
     private AdapterCategory mAdapter;
-    private SearchView searchView;
     SwipeRefreshLayout swipeRefreshLayout = null;
     LinearLayout lyt_root;
 
@@ -59,14 +60,14 @@ public class FragmentCategory extends Fragment implements AdapterCategory.Contac
             lyt_root.setRotationY(180);
         }
 
-        recyclerView = view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         categoryList = new ArrayList<>();
         mAdapter = new AdapterCategory(getActivity(), categoryList, this);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new MyDividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL, 74));
+        recyclerView.addItemDecoration(new MyDividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL, 74));
         recyclerView.setAdapter(mAdapter);
 
         fetchContacts();
@@ -79,7 +80,7 @@ public class FragmentCategory extends Fragment implements AdapterCategory.Contac
         swipeRefreshLayout.setOnRefreshListener(() -> {
             categoryList.clear();
             new Handler().postDelayed(() -> {
-                if (Utils.isNetworkAvailable(getActivity())) {
+                if (Utils.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
                     swipeRefreshLayout.setRefreshing(false);
                     fetchContacts();
                 } else {
@@ -92,7 +93,7 @@ public class FragmentCategory extends Fragment implements AdapterCategory.Contac
     }
 
     private void fetchContacts() {
-        JsonArrayRequest request = new JsonArrayRequest(GET_CATEGORY, response -> {
+        @SuppressLint("NotifyDataSetChanged") JsonArrayRequest request = new JsonArrayRequest(GET_CATEGORY, response -> {
             if (response == null) {
                 Toast.makeText(getActivity(), getResources().getString(R.string.failed_fetch_data), Toast.LENGTH_LONG).show();
                 return;
@@ -117,11 +118,11 @@ public class FragmentCategory extends Fragment implements AdapterCategory.Contac
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search, menu);
 
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.search)
+        SearchManager searchManager = (SearchManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search)
                 .getActionView();
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getActivity().getComponentName()));

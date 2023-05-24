@@ -19,6 +19,8 @@ import com.app.ecommerce.activities.ActivitySettings;
 import com.app.ecommerce.utilities.SharedPref;
 import com.balysv.materialripple.MaterialRippleLayout;
 
+import java.util.Objects;
+
 public class FragmentProfile extends Fragment {
 
     private SharedPref sharedPref;
@@ -60,7 +62,7 @@ public class FragmentProfile extends Fragment {
 
         btn_rate = view.findViewById(R.id.btn_rate);
         btn_rate.setOnClickListener(v -> {
-            final String appName = getActivity().getPackageName();
+            final String appName = Objects.requireNonNull(getActivity()).getPackageName();
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appName)));
             } catch (android.content.ActivityNotFoundException anfe) {
@@ -73,7 +75,7 @@ public class FragmentProfile extends Fragment {
             String share_text = Html.fromHtml(getResources().getString(R.string.share_app)).toString();
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_SEND);
-            intent.putExtra(Intent.EXTRA_TEXT, share_text + "\n\n" + "https://play.google.com/store/apps/details?id=" + getActivity().getPackageName());
+            intent.putExtra(Intent.EXTRA_TEXT, share_text + "\n\n" + "https://play.google.com/store/apps/details?id=" + Objects.requireNonNull(getActivity()).getPackageName());
             intent.setType("text/plain");
             startActivity(intent);
         });
@@ -92,5 +94,4 @@ public class FragmentProfile extends Fragment {
         txt_user_address.setText(sharedPref.getYourAddress());
         super.onResume();
     }
-
 }

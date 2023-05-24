@@ -2,6 +2,7 @@ package com.app.ecommerce.fragments;
 
 import static com.app.ecommerce.utilities.Constant.GET_RECENT_PRODUCT;
 
+import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -17,15 +18,13 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.app.ecommerce.Config;
 import com.app.ecommerce.R;
@@ -40,13 +39,12 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FragmentRecent extends Fragment implements AdapterProduct.ContactsAdapterListener {
 
-    private RecyclerView recyclerView;
     private List<Product> productList;
     private AdapterProduct mAdapter;
-    private SearchView searchView;
     SwipeRefreshLayout swipeRefreshLayout = null;
     LinearLayout lyt_root;
 
@@ -62,13 +60,13 @@ public class FragmentRecent extends Fragment implements AdapterProduct.ContactsA
             lyt_root.setRotationY(180);
         }
 
-        recyclerView = view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         productList = new ArrayList<>();
         mAdapter = new AdapterProduct(getActivity(), productList, this);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(getActivity(), R.dimen.item_offset);
+        ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(Objects.requireNonNull(getActivity()), R.dimen.item_offset);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
@@ -83,7 +81,7 @@ public class FragmentRecent extends Fragment implements AdapterProduct.ContactsA
         swipeRefreshLayout.setOnRefreshListener(() -> {
             productList.clear();
             new Handler().postDelayed(() -> {
-                if (Utils.isNetworkAvailable(getActivity())) {
+                if (Utils.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
                     swipeRefreshLayout.setRefreshing(false);
                     fetchData();
                 } else {
@@ -96,7 +94,7 @@ public class FragmentRecent extends Fragment implements AdapterProduct.ContactsA
     }
 
     private void fetchData() {
-        JsonArrayRequest request = new JsonArrayRequest(GET_RECENT_PRODUCT, response -> {
+        @SuppressLint("NotifyDataSetChanged") JsonArrayRequest request = new JsonArrayRequest(GET_RECENT_PRODUCT, response -> {
             if (response == null) {
                 Toast.makeText(getActivity(), getResources().getString(R.string.failed_fetch_data), Toast.LENGTH_LONG).show();
                 return;
@@ -113,25 +111,22 @@ public class FragmentRecent extends Fragment implements AdapterProduct.ContactsA
             mAdapter.notifyDataSetChanged();
 
             swipeRefreshLayout.setRefreshing(false);
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // error in getting json
-                Log.e("INFO", "Error: " + error.getMessage());
-                Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                swipeRefreshLayout.setRefreshing(false);
-            }
+        }, error -> {
+            // error in getting json
+            Log.e("INFO", "Error: " + error.getMessage());
+            Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            swipeRefreshLayout.setRefreshing(false);
         });
 
         MyApplication.getInstance().addToRequestQueue(request);
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search, menu);
 
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        SearchManager searchManager = (SearchManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 

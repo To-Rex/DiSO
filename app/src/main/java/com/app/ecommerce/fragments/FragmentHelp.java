@@ -2,6 +2,7 @@ package com.app.ecommerce.fragments;
 
 import static com.app.ecommerce.utilities.Constant.GET_HELP;
 
+import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -23,9 +25,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.app.ecommerce.Config;
 import com.app.ecommerce.R;
@@ -40,13 +39,12 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FragmentHelp extends Fragment implements AdapterHelp.ContactsAdapterListener {
 
-    private RecyclerView recyclerView;
     private List<Help> helpList;
     private AdapterHelp mAdapter;
-    private SearchView searchView;
     SwipeRefreshLayout swipeRefreshLayout = null;
     LinearLayout lyt_root;
 
@@ -61,14 +59,14 @@ public class FragmentHelp extends Fragment implements AdapterHelp.ContactsAdapte
             lyt_root.setRotationY(180);
         }
 
-        recyclerView = view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         helpList = new ArrayList<>();
         mAdapter = new AdapterHelp(getActivity(), helpList, this);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new MyDividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL, 0));
+        recyclerView.addItemDecoration(new MyDividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL, 0));
         recyclerView.setAdapter(mAdapter);
 
         fetchContacts();
@@ -81,7 +79,7 @@ public class FragmentHelp extends Fragment implements AdapterHelp.ContactsAdapte
         swipeRefreshLayout.setOnRefreshListener(() -> {
             helpList.clear();
             new Handler().postDelayed(() -> {
-                if (Utils.isNetworkAvailable(getActivity())) {
+                if (Utils.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
                     swipeRefreshLayout.setRefreshing(false);
                     fetchContacts();
                 } else {
@@ -94,7 +92,7 @@ public class FragmentHelp extends Fragment implements AdapterHelp.ContactsAdapte
     }
 
     private void fetchContacts() {
-        JsonArrayRequest request = new JsonArrayRequest(GET_HELP, response -> {
+        @SuppressLint("NotifyDataSetChanged") JsonArrayRequest request = new JsonArrayRequest(GET_HELP, response -> {
             if (response == null) {
                 Toast.makeText(getActivity(), getResources().getString(R.string.failed_fetch_data), Toast.LENGTH_LONG).show();
                 return;
@@ -109,24 +107,21 @@ public class FragmentHelp extends Fragment implements AdapterHelp.ContactsAdapte
 
             // refreshing recycler view
             mAdapter.notifyDataSetChanged();
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // error in getting json
-                Log.e("INFO", "Error: " + error.getMessage());
-                Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+        }, error -> {
+            // error in getting json
+            Log.e("INFO", "Error: " + error.getMessage());
+            Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
         });
 
         MyApplication.getInstance().addToRequestQueue(request);
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search, menu);
 
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        SearchManager searchManager = (SearchManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 

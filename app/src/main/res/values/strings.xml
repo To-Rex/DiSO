@@ -2,7 +2,7 @@
 <resources>
 
     <!--application name-->
-    <string name="app_name">E-Commerce Android App</string>
+    <string name="app_name">DiSo</string>
 
     <!--bottom navigation-->
     <string name="title_nav_recent">Recent</string>
