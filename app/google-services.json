@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "662108592727",
+    "project_id": "diso-1df27",
+    "storage_bucket": "diso-1df27.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662108592727:android:34b4234565bbb37b84a112",
+        "android_client_info": {
+          "package_name": "com.app.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "662108592727-ba47ee6at8f73uqi70jb76p2fpgddb6j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAC5sqd5exyuTivRxW8w--4ct-YQVyv4uE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662108592727-ba47ee6at8f73uqi70jb76p2fpgddb6j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

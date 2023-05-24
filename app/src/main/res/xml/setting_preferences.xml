@@ -1,0 +1,32 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/pref_group_profile">
+
+        <EditTextPreference
+            android:defaultValue="@string/default_your_name"
+            android:key="@string/pref_title_name"
+            android:summary="@string/default_your_name"
+            android:title="@string/pref_title_name" />
+
+        <EditTextPreference
+            android:defaultValue="@string/default_your_email"
+            android:key="@string/pref_title_email"
+            android:summary="@string/default_your_email"
+            android:title="@string/pref_title_email" />
+
+        <EditTextPreference
+            android:defaultValue="@string/default_your_phone"
+            android:inputType="phone"
+            android:key="@string/pref_title_phone"
+            android:summary="@string/default_your_phone"
+            android:title="@string/pref_title_phone" />
+
+        <EditTextPreference
+            android:defaultValue="@string/default_your_address"
+            android:key="@string/pref_title_address"
+            android:summary="@string/default_your_address"
+            android:title="@string/pref_title_address" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

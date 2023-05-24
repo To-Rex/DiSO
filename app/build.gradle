@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+	namespace 'com.app.ecommerce'
+    compileSdk 33
+    defaultConfig {
+        applicationId 'com.app.ecommerce'
+        minSdk 19
+        targetSdk 33
+        versionCode 10
+        versionName '3.3.0'
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    bundle {
+        storeArchive {
+            enable = false
+        }
+    }
+    lint {
+        disable 'OldTargetApi', 'GradleDependency'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.0'
+    implementation platform('com.google.firebase:firebase-bom:30.3.2')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.work:work-runtime:2.7.1'
+    implementation 'com.balysv:material-ripple:1.0.2'
+    implementation 'com.github.clans:fab:1.6.4'
+    implementation 'com.android.volley:volley:1.2.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.onesignal:OneSignal:4.8.0'
+    implementation 'com.google.firebase:firebase-auth:21.1.0'
+}

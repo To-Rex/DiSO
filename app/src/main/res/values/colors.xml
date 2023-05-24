@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--app main color-->
+    <color name="colorPrimaryDark">#023047</color>
+    <color name="colorPrimary">#219ebc</color>
+    <color name="colorAccent">#8ecae6</color>
+
+    <!--other color-->
+    <color name="available">#023047</color>
+    <color name="sold">#767676</color>
+    <color name="txt_price_color">#0AAC3A</color>
+    <color name="ripple_color">#dfdfdf</color>
+    <color name="green">#0ecf48</color>
+    <color name="black">#000000</color>
+    <color name="grey">#999999</color>
+    <color name="grey_soft">#ededed</color>
+    <color name="separator">#efefef</color>
+    <color name="white">#ffffff</color>
+    <color name="hint">#767676</color>
+
+</resources>
