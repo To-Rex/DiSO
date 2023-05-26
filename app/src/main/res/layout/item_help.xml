@@ -8,35 +8,41 @@
     app:mrl_rippleHover="true"
     app:mrl_rippleOverlay="true">
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="10dp"
-        android:paddingTop="16dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="16dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="6dp"
-            android:layout_marginLeft="6dp"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:background="@color/transparent"
+            android:paddingLeft="10dp"
+            android:paddingTop="16dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="16dp">
 
-            <TextView
-                android:id="@+id/title"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="How to order"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical"
+                android:padding="5dp">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/how_to_order"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-    </RelativeLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </com.balysv.materialripple.MaterialRippleLayout>

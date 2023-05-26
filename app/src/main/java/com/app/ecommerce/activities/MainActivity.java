@@ -5,6 +5,7 @@ import static com.app.ecommerce.utilities.Constant.GET_TAX_CURRENCY;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.SQLException;
 import android.net.Uri;
 import android.os.Bundle;
@@ -40,10 +41,12 @@ import com.app.ecommerce.utilities.Utils;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
+import com.google.android.material.navigation.NavigationBarView;
 
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Locale locale = new Locale("eng");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
         setContentView(R.layout.activity_main);
         view = findViewById(android.R.id.content);
         Utils.lightNavigation(this);
@@ -80,8 +90,11 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
         viewPager.setOffscreenPageLimit(pager_number);
 
+        //update locale language for fragment
+
+
         navigation = findViewById(R.id.navigation);
-        navigation.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+        navigation.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
         navigation.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.nav_recent:
@@ -126,11 +139,11 @@ public class MainActivity extends AppCompatActivity {
                     appBarLayout.setVisibility(View.GONE);
                     toolbar.setTitle(R.string.add_product);
                 } else if (viewPager.getCurrentItem() == 3) {
-                     appBarLayout.setVisibility(View.VISIBLE);
+                    appBarLayout.setVisibility(View.VISIBLE);
                 } else if (viewPager.getCurrentItem() == 4) {
                     appBarLayout.setVisibility(View.VISIBLE);
                     toolbar.setTitle(R.string.title_nav_profile);
-                }else {
+                } else {
                     appBarLayout.setVisibility(View.VISIBLE);
                     toolbar.setTitle(R.string.app_name);
                 }

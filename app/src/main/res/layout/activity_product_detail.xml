@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
     android:layout_height="match_parent">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -10,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/lyt_checkout"
-        android:background="#e7e7e7"
+        android:background="@color/color_2"
         android:visibility="visible">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -46,7 +47,6 @@
                         app:mrl_rippleColor="@color/ripple_color"
                         app:mrl_rippleHover="true"
                         app:mrl_rippleOverlay="true">
-
                         <ImageView
                             android:id="@+id/product_image"
                             android:layout_width="match_parent"
@@ -84,14 +84,15 @@
                 android:id="@+id/cv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
                 card_view:cardBackgroundColor="@android:color/white"
-                card_view:cardElevation="8sp"
+                card_view:cardElevation="11sp"
                 card_view:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white"
+                    android:background="@color/color_2"
                     android:orientation="vertical">
 
                     <TextView
@@ -102,6 +103,7 @@
                         android:layout_marginLeft="18dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
+                        android:textColor="@color/white"
                         android:layout_marginRight="10dp"
                         android:text="Ayam Goreng"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
@@ -129,7 +131,7 @@
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:src="@drawable/ic_tag_price"
-                                android:tint="@color/txt_price_color" />
+                                app:tint="@color/available" />
 
                             <TextView
                                 android:id="@+id/product_price"
@@ -137,8 +139,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="3dp"
                                 android:layout_marginRight="3dp"
-                                android:text="10 USD"
-                                android:textColor="@color/txt_price_color"
+                                android:text="@string/_10_usd"
+                                android:textColor="@color/color_4"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
 
@@ -158,7 +160,7 @@
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:src="@drawable/ic_stock"
-                                android:tint="@color/grey" />
+                                app:tint="@color/available" />
 
                             <TextView
                                 android:id="@+id/product_quantity"
@@ -166,6 +168,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
+                                android:textColor="@color/color_3"
                                 android:text="10"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -173,13 +176,20 @@
                         </LinearLayout>
 
                     </LinearLayout>
-
-                    <WebView
-                        android:id="@+id/product_description"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:scrollbars="none" />
+                        app:cardCornerRadius="15dp"
+                        android:elevation="0dp"
+                        card_view:ignore="WebViewLayout">
+                        <WebView
+                            android:id="@+id/product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:scrollbars="none" />
+
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
@@ -194,13 +204,13 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary">
+        android:background="@color/color_5">
 
         <com.balysv.materialripple.MaterialRippleLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:mrl_rippleAlpha="0.2"
-            app:mrl_rippleColor="@color/ripple_color"
+            app:mrl_rippleColor="@color/color_5"
             app:mrl_rippleHover="true"
             app:mrl_rippleOverlay="true">
 
@@ -208,8 +218,8 @@
                 android:id="@+id/btn_add_cart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/transparent"
-                android:text=""
+                android:background="@color/color_5"
+                android:text="@string/btn_add_to_cart"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 

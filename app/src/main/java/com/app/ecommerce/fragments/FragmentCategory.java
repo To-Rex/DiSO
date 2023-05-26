@@ -40,7 +40,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class FragmentCategory extends Fragment implements AdapterCategory.ContactsAdapterListener {
 
@@ -67,8 +66,12 @@ public class FragmentCategory extends Fragment implements AdapterCategory.Contac
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new MyDividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL, 74));
+        //divider false leave room for footer view
+        recyclerView.addItemDecoration(new MyDividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL, 0));
+
         recyclerView.setAdapter(mAdapter);
+
+
 
         fetchContacts();
         onRefresh();
@@ -80,7 +83,7 @@ public class FragmentCategory extends Fragment implements AdapterCategory.Contac
         swipeRefreshLayout.setOnRefreshListener(() -> {
             categoryList.clear();
             new Handler().postDelayed(() -> {
-                if (Utils.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
+                if (Utils.isNetworkAvailable(requireActivity())) {
                     swipeRefreshLayout.setRefreshing(false);
                     fetchContacts();
                 } else {
@@ -121,11 +124,11 @@ public class FragmentCategory extends Fragment implements AdapterCategory.Contac
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search, menu);
 
-        SearchManager searchManager = (SearchManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.search)
                 .getActionView();
         searchView.setSearchableInfo(searchManager
-                .getSearchableInfo(getActivity().getComponentName()));
+                .getSearchableInfo(requireActivity().getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
         // listening to search query text change

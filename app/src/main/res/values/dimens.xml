@@ -2,6 +2,6 @@
 <resources>
 
     <dimen name="item_offset">6dp</dimen>
-    <dimen name="corner_radius">8dp</dimen>
+    <dimen name="corner_radius">15dp</dimen>
 
 </resources>

@@ -4,51 +4,55 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:mrl_rippleAlpha="0.2"
-    app:mrl_rippleColor="@color/ripple_color"
+    app:mrl_rippleColor="@color/transparent"
     app:mrl_rippleHover="true"
     app:mrl_rippleOverlay="true">
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="10dp">
+        android:layout_centerVertical="true"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/category_image"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:src="@drawable/ic_loading"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Image.Rounded" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/category_image"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:src="@drawable/ic_loading"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Image.Rounded" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="6dp"
-            android:layout_marginLeft="6dp"
-            android:layout_toEndOf="@id/category_image"
-            android:layout_toRightOf="@id/category_image"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/category_name"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_toEndOf="@id/category_image"
+                android:layout_toRightOf="@id/category_image"
+                android:orientation="vertical"
+                android:padding="5dp">
 
-            <TextView
-                android:id="@+id/product_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
+                <TextView
+                    android:id="@+id/category_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/product_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="" />
 
-    </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </com.balysv.materialripple.MaterialRippleLayout>

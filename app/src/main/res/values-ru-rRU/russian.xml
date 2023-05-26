@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--application name-->
+    <string name="app_name">ДиСо</string>
+
+    <!--bottom navigation-->
+    <string name="title_nav_recent">Недавний</string>
+    <string name="title_nav_category">Категория</string>
+    <string name="title_nav_help">Помощь</string>
+    <string name="title_nav_profile">Профиль</string>
+
+    <!--privacy policy-->
+    <string name="privacy_policy_url">https://sites.google.com/view/ecommerce-privacy-policy</string>
+
+    <!--share text-->
+    <string name="share_app">Я хочу поделиться с вами этим приложением DiSo для Android. Здесь вы можете скачать это приложение из PlayStore и Google Play</string>
+    <string name="share_product_section_one">Находить</string>
+    <string name="share_product_section_two">с ценой</string>
+    <string name="share_product_section_three">! Получите это прямо сейчас в приложении Android DiSo!</string>
+
+    <!--network-->
+    <string name="no_internet">Пожалуйста, включите подключение к Интернету перед использованием этого приложения</string>
+
+    <!--title bar-->
+    <string name="title_cart">Корзина</string>
+    <string name="title_checkout">проверить</string>
+
+    <!--action-->
+    <string name="action_cart">Моя тележка</string>
+    <string name="action_clear">Очистить все</string>
+
+    <!--menu, cart and order-->
+    <string name="search_query_text">Поиск&#8230;</string>
+    <string name="confirm">Подтверждение</string>
+    <string name="number_order">Номер заказа : </string>
+    <string name="clear_all_order">Вы хотите очистить весь свой заказ?</string>
+    <string name="clear_one_order">Удалить этот заказ?</string>
+    <string name="db_exist_alert">Вы хотите удалить свой предыдущий заказ?</string>
+    <string name="msg_empty_cart">Ваша корзина пуста!</string>
+    <string name="msg_no_history">История ваших заказов пуста!</string>
+    <string name="empty_cart">Упс, ваша корзина пуста</string>
+    <string name="btn_continue_shopping">Продолжить покупки</string>
+    <string name="btn_add_to_cart">ДОБАВИТЬ В КОРЗИНУ</string>
+    <string name="btn_out_of_stock">РАСПРОДАНО</string>
+    <string name="msg_stock_not_enough">Недостаточный резерв</string>
+    <string name="msg_stock_below_0">количество товара не может быть 0</string>
+    <string name="msg_success_add_cart">Товар успешно добавлен в вашу корзину</string>
+    <string name="btn_checkout">Проверить</string>
+
+    <!--checkout menu-->
+    <string name="checkout_your_name">Ваше имя</string>
+    <string name="checkout_email">Ваш адрес электронной почты</string>
+    <string name="checkout_phone_number">Номер телефона</string>
+    <string name="checkout_order_list">Детали заказа</string>
+    <string name="checkout_add_comment">Комментарий</string>
+    <string name="no_order_menu">Нет порядка</string>
+    <string name="txt_order">Заказ : </string>
+    <string name="txt_tax">налог :</string>
+    <string name="txt_total">Общий :</string>
+    <string name="txt_shipping">Перевозки</string>
+    <string name="checkout_fill_form">Пожалуйста, сначала заполните форму!</string>
+    <string name="checkout_dialog_title">Процесс оформления заказа</string>
+    <string name="checkout_dialog_msg">Вы уверены, что хотите оформить заказ?</string>
+    <string name="checkout_submit_title">пожалуйста, подождите</string>
+    <string name="checkout_submit_msg">Отправьте свой заказ&#8230;</string>
+    <string name="checkout_success_title">Поздравление</string>
+    <string name="checkout_success_msg">Спасибо за заказ, ваш заказ будет рассмотрен в ближайшее время, детали счета будут отправлены на вашу электронную почту, когда заказ будет готов.</string>
+    <string name="checkout_option_ok">ХОРОШО</string>
+    <string name="checkout_address">Адрес</string>
+    <string name="checkout_shipping">Перевозки</string>
+    <string name="title_history">История заказов</string>
+    <string name="title_profile">Профиль пользователя</string>
+    <string name="btn_process_checkout">ПРОЦЕСС ПРОВЕРКИ</string>
+
+    <!--profile preferences-->
+    <string name="pref_group_profile">ПРОФИЛЬ</string>
+    <string name="pref_title_name">Имя</string>
+    <string name="pref_title_email">Электронная почта</string>
+    <string name="pref_title_phone">Номер телефона</string>
+    <string name="pref_title_address">Адрес</string>
+    <string name="default_your_name">Ваше имя</string>
+    <string name="default_your_email">твой.почта@gmail.com</string>
+    <string name="default_your_phone">++998901234567</string>
+    <string name="default_your_address">Ваш адрес</string>
+    <string name="pref_msg_invalid_name">Неверный ввод имени</string>
+    <string name="pref_msg_invalid_email">Неверный адрес электронной почты</string>
+    <string name="pref_msg_invalid_phone">Неверный ввод телефона</string>
+    <string name="pref_msg_invalid_address">Неверный адрес</string>
+
+    <!--permission-->
+    <string name="loading_msg">Пожалуйста, подождите&#8230;</string>
+
+    <!--dialog choose option-->
+    <string name="dialog_option_yes">Да</string>
+    <string name="dialog_option_no">Нет</string>
+    <string name="dialog_option_cancel">Отмена</string>
+    <string name="dialog_option_add">Добавлять</string>
+    <string name="msg_exit">Нажмите еще раз, чтобы выйти из приложения</string>
+    <string name="txt_items">элемент(c)</string>
+    <string name="title_img_save">Сохранять</string>
+    <string name="title_img_close">Закрывать</string>
+    <string name="msg_copy">Код покупки скопирован</string>
+    <string name="failed_fetch_data">Не удалось получить данные! Пожалуйста, попробуйте еще раз.</string>
+    <string name="btn_edit_profile">РЕДАКТИРОВАТЬ</string>
+    <string name="txt_profile_history">История заказов</string>
+    <string name="txt_profile_rate">Оцените нас</string>
+    <string name="txt_profile_privacy">политика конфиденциальности</string>
+    <string name="txt_total_order">Общий заказ</string>
+    <string name="txt_profile_share">Делиться</string>
+    <string name="add_product">Добавить продукт</string>
+    <string name="menu_name">Название меню</string>
+    <string name="_15_usd">$15 USD</string>
+    <string name="whoops_you_haven_t_ordered_yet">Ой, вы еще не заказали.</string>
+    <string name="how_to_order">Как заказать</string>
+    <string name="user_name">Имя пользователя</string>
+    <string name="diso_gmail_com">дисо@gmail.com</string>
+    <string name="_998901234567">+998901234567</string>
+    <string name="collins_street_west_victoria_8007_australia_envato_hq_121_king_street_melbourne_victoria_3000_australia">Collins Street West Victoria 8007 Australia, Envato HQ: 121 King Street, Melbourne Victoria 3000 Australia</string>
+    <string name="_10_usd">10 USD</string>
+
+</resources>

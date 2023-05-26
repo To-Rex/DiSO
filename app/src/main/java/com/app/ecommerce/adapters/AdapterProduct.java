@@ -57,6 +57,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.MyViewHo
         return new MyViewHolder(itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final Product product = productListFiltered.get(position);
@@ -75,7 +76,6 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.MyViewHo
                 .resize(250, 250)
                 .centerCrop()
                 .into(holder.product_image);
-
     }
 
     @Override
@@ -100,7 +100,6 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.MyViewHo
                     }
                     productListFiltered = filteredList;
                 }
-
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = productListFiltered;
                 return filterResults;

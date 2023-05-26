@@ -56,6 +56,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
         return new MyViewHolder(itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final Category category = categoryListFiltered.get(position);

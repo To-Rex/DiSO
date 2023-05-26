@@ -39,7 +39,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class FragmentHelp extends Fragment implements AdapterHelp.ContactsAdapterListener {
 
@@ -66,7 +65,7 @@ public class FragmentHelp extends Fragment implements AdapterHelp.ContactsAdapte
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new MyDividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL, 0));
+        recyclerView.addItemDecoration(new MyDividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL, 0));
         recyclerView.setAdapter(mAdapter);
 
         fetchContacts();
@@ -79,7 +78,7 @@ public class FragmentHelp extends Fragment implements AdapterHelp.ContactsAdapte
         swipeRefreshLayout.setOnRefreshListener(() -> {
             helpList.clear();
             new Handler().postDelayed(() -> {
-                if (Utils.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
+                if (Utils.isNetworkAvailable(requireActivity())) {
                     swipeRefreshLayout.setRefreshing(false);
                     fetchContacts();
                 } else {
@@ -92,7 +91,8 @@ public class FragmentHelp extends Fragment implements AdapterHelp.ContactsAdapte
     }
 
     private void fetchContacts() {
-        @SuppressLint("NotifyDataSetChanged") JsonArrayRequest request = new JsonArrayRequest(GET_HELP, response -> {
+        @SuppressLint("NotifyDataSetChanged")
+        JsonArrayRequest request = new JsonArrayRequest(GET_HELP, response -> {
             if (response == null) {
                 Toast.makeText(getActivity(), getResources().getString(R.string.failed_fetch_data), Toast.LENGTH_LONG).show();
                 return;
@@ -120,7 +120,7 @@ public class FragmentHelp extends Fragment implements AdapterHelp.ContactsAdapte
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search, menu);
 
-        SearchManager searchManager = (SearchManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);

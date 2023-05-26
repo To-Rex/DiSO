@@ -16,8 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Whoops, you haven't ordered yet"
+        android:text="@string/whoops_you_haven_t_ordered_yet"
         android:textSize="18sp" />
-
 
 </LinearLayout>

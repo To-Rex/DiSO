@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.app.ecommerce.Config;
@@ -29,7 +30,7 @@ public class FragmentProfile extends Fragment {
     TextView txt_user_phone;
     TextView txt_user_address;
     MaterialRippleLayout btn_edit_user;
-    MaterialRippleLayout btn_order_history, btn_rate, btn_share, btn_privacy;
+    CardView btn_order_history, btn_rate, btn_share, btn_privacy;
     LinearLayout lyt_root;
 
     @Override
@@ -62,7 +63,7 @@ public class FragmentProfile extends Fragment {
 
         btn_rate = view.findViewById(R.id.btn_rate);
         btn_rate.setOnClickListener(v -> {
-            final String appName = Objects.requireNonNull(getActivity()).getPackageName();
+            final String appName = requireActivity().getPackageName();
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appName)));
             } catch (android.content.ActivityNotFoundException anfe) {
@@ -75,7 +76,7 @@ public class FragmentProfile extends Fragment {
             String share_text = Html.fromHtml(getResources().getString(R.string.share_app)).toString();
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_SEND);
-            intent.putExtra(Intent.EXTRA_TEXT, share_text + "\n\n" + "https://play.google.com/store/apps/details?id=" + Objects.requireNonNull(getActivity()).getPackageName());
+            intent.putExtra(Intent.EXTRA_TEXT, share_text + "\n\n" + "https://play.google.com/store/apps/details?id=" + requireActivity().getPackageName());
             intent.setType("text/plain");
             startActivity(intent);
         });

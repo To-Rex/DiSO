@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--application name-->
+    <string name="app_name">DiSo</string>
+
+    <!--bottom navigation-->
+    <string name="title_nav_recent">Recent</string>
+    <string name="title_nav_category">Category</string>
+    <string name="title_nav_help">Help</string>
+    <string name="title_nav_profile">Profile</string>
+
+    <!--privacy policy-->
+    <string name="privacy_policy_url">https://sites.google.com/view/ecommerce-privacy-policy</string>
+
+    <!--share text-->
+    <string name="share_app">I Would like to share this E-Commerce Android App with you. Here You Can Download This Application from PlayStore</string>
+    <string name="share_product_section_one">Find</string>
+    <string name="share_product_section_two">with price</string>
+    <string name="share_product_section_three">! Get it now in E-Commerce Android App!</string>
+
+    <!--network-->
+    <string name="no_internet">Please, enable internet connection before using this app</string>
+
+    <!--title bar-->
+    <string name="title_cart">Shopping Cart</string>
+    <string name="title_checkout">Checkout</string>
+
+    <!--action-->
+    <string name="action_cart">My Cart</string>
+    <string name="action_clear">Clear All</string>
+
+    <!--menu, cart and order-->
+    <string name="search_query_text">Search&#8230;</string>
+    <string name="confirm">Confirmation</string>
+    <string name="number_order">Number of order : </string>
+    <string name="clear_all_order">Do you want to clear your all order?</string>
+    <string name="clear_one_order">Do you want to clear this order?</string>
+    <string name="db_exist_alert">Do you want to remove your previous order?</string>
+    <string name="msg_empty_cart">Your cart is empty!</string>
+    <string name="msg_no_history">Your order history is empty!</string>
+    <string name="empty_cart">Whoops, your cart is empty</string>
+    <string name="btn_continue_shopping">Continue Shopping</string>
+    <string name="btn_add_to_cart">ADD TO CART</string>
+    <string name="btn_out_of_stock">OUT OF STOCK</string>
+    <string name="msg_stock_not_enough">Stock is not enough</string>
+    <string name="msg_stock_below_0">product quantity cannot be 0</string>
+    <string name="msg_success_add_cart">Success add Product to cart</string>
+    <string name="btn_checkout">Checkout</string>
+
+    <!--checkout menu-->
+    <string name="checkout_your_name">Your Name</string>
+    <string name="checkout_email">Your Email</string>
+    <string name="checkout_phone_number">Phone Number</string>
+    <string name="checkout_order_list">Order Detail</string>
+    <string name="checkout_add_comment">Comment</string>
+    <string name="no_order_menu">No order</string>
+    <string name="txt_order">Order :</string>
+    <string name="txt_tax">Tax :</string>
+    <string name="txt_total">Total :</string>
+    <string name="txt_shipping">Shipping</string>
+    <string name="checkout_fill_form">please complete fill the form first!</string>
+    <string name="checkout_dialog_title">Process Checkout</string>
+    <string name="checkout_dialog_msg">Are you sure want to checkout?</string>
+    <string name="checkout_submit_title">Please wait</string>
+    <string name="checkout_submit_msg">Submit your order&#8230;</string>
+    <string name="checkout_success_title">Congratulation</string>
+    <string name="checkout_success_msg">Thank you for ordering, your order will be review soon, invoice detail will be sent to your email when the order is ready.</string>
+    <string name="checkout_option_ok">OK</string>
+    <string name="checkout_address">Address</string>
+    <string name="checkout_shipping">Shipping</string>
+    <string name="title_history">Order History</string>
+    <string name="title_profile">User Profile</string>
+    <string name="btn_process_checkout">PROCESS CHECKOUT</string>
+
+    <!--profile preferences-->
+    <string name="pref_group_profile">PROFILE</string>
+    <string name="pref_title_name">Name</string>
+    <string name="pref_title_email">Email</string>
+    <string name="pref_title_phone">Phone Number</string>
+    <string name="pref_title_address">Address</string>
+    <string name="default_your_name">Your Name</string>
+    <string name="default_your_email">your.email@gmail.com</string>
+    <string name="default_your_phone">+628123456789</string>
+    <string name="default_your_address">Your Address</string>
+    <string name="pref_msg_invalid_name">Invalid Name Input</string>
+    <string name="pref_msg_invalid_email">Invalid Email Input</string>
+    <string name="pref_msg_invalid_phone">Invalid Phone Input</string>
+    <string name="pref_msg_invalid_address">Invalid Address Input</string>
+
+    <!--permission-->
+    <string name="loading_msg">Please Wait&#8230;</string>
+
+    <!--dialog choose option-->
+    <string name="dialog_option_yes">Yes</string>
+    <string name="dialog_option_no">No</string>
+    <string name="dialog_option_cancel">Cancel</string>
+    <string name="dialog_option_add">Add</string>
+    <string name="msg_exit">Press again to exit app</string>
+    <string name="txt_items">item(s)</string>
+    <string name="title_img_save">Save</string>
+    <string name="title_img_close">Close</string>
+    <string name="msg_copy">Purchase code copied</string>
+    <string name="failed_fetch_data">Could not fetch the data! Pleas try again.</string>
+    <string name="btn_edit_profile">EDIT</string>
+    <string name="txt_profile_history">Order History</string>
+    <string name="txt_profile_rate">Rate Us</string>
+    <string name="txt_profile_privacy">Privacy Policy</string>
+    <string name="txt_total_order">Total Order</string>
+    <string name="txt_profile_share">Share</string>
+    <string name="add_product">Add product</string>
+    <string name="menu_name">Menu name</string>
+    <string name="_15_usd">$15 USD</string>
+    <string name="whoops_you_haven_t_ordered_yet">Whoops, you haven\'t ordered yet</string>
+    <string name="how_to_order">How to order</string>
+    <string name="user_name">User Name</string>
+    <string name="diso_gmail_com">diso@gmail.com</string>
+    <string name="_998901234567">+998901234567</string>
+    <string name="collins_street_west_victoria_8007_australia_envato_hq_121_king_street_melbourne_victoria_3000_australia">Collins Street West Victoria 8007 Australia, Envato HQ: 121 King Street, Melbourne Victoria 3000 Australia</string>
+    <string name="_10_usd">10 USD</string>
+
+</resources>

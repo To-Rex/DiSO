@@ -109,5 +109,14 @@
     <string name="txt_total_order">Total Order</string>
     <string name="txt_profile_share">Share</string>
     <string name="add_product">Add product</string>
+    <string name="menu_name">Menu name</string>
+    <string name="_15_usd">$15 USD</string>
+    <string name="whoops_you_haven_t_ordered_yet">Whoops, you haven\'t ordered yet</string>
+    <string name="how_to_order">How to order</string>
+    <string name="user_name">User Name</string>
+    <string name="diso_gmail_com">diso@gmail.com</string>
+    <string name="_998901234567">+998901234567</string>
+    <string name="collins_street_west_victoria_8007_australia_envato_hq_121_king_street_melbourne_victoria_3000_australia">Collins Street West Victoria 8007 Australia, Envato HQ: 121 King Street, Melbourne Victoria 3000 Australia</string>
+    <string name="_10_usd">10 USD</string>
 
 </resources>

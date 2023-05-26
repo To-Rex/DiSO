@@ -8,6 +8,7 @@
 
     <!--other color-->
     <color name="available">#023047</color>
+    <color name="not_available">#767676</color>
     <color name="sold">#767676</color>
     <color name="txt_price_color">#0AAC3A</color>
     <color name="ripple_color">#dfdfdf</color>
@@ -18,5 +19,12 @@
     <color name="separator">#efefef</color>
     <color name="white">#ffffff</color>
     <color name="hint">#767676</color>
+
+    <!--colors-->
+    <color name="color_1">#8ecae6</color>
+    <color name="color_2">#219ebc</color>
+    <color name="color_3">#023047</color>
+    <color name="color_4">#ffb703</color>
+    <color name="color_5">#fb8500</color>
 
 </resources>
