@@ -57,12 +57,12 @@ public class ActivityCart extends AppCompatActivity {
     String str_currency_code;
     Button btn_checkout, btn_continue;
     ArrayList<ArrayList<Object>> data;
-    public static ArrayList<Integer> product_id = new ArrayList<Integer>();
-    public static ArrayList<String> product_name = new ArrayList<String>();
-    public static ArrayList<Integer> product_quantity = new ArrayList<Integer>();
-    public static ArrayList<String> currency_code = new ArrayList<String>();
-    public static ArrayList<Double> sub_total_price = new ArrayList<Double>();
-    public static ArrayList<String> product_image = new ArrayList<String>();
+    public static ArrayList<Integer> product_id = new ArrayList<>();
+    public static ArrayList<String> product_name = new ArrayList<>();
+    public static ArrayList<Integer> product_quantity = new ArrayList<>();
+    public static ArrayList<String> currency_code = new ArrayList<>();
+    public static ArrayList<Double> sub_total_price = new ArrayList<>();
+    public static ArrayList<String> product_image = new ArrayList<>();
     List<Cart> arrayCart;
     View view;
 
@@ -141,6 +141,7 @@ public class ActivityCart extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -216,6 +217,7 @@ public class ActivityCart extends AppCompatActivity {
             return null;
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(Void result) {
 
@@ -280,8 +282,8 @@ public class ActivityCart extends AppCompatActivity {
 
     class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
-        private GestureDetector gestureDetector;
-        private ClickListener clickListener;
+        private final GestureDetector gestureDetector;
+        private final ClickListener clickListener;
 
         public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final ClickListener clickListener) {
 

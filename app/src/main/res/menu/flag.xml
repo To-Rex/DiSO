@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/flag"
+        android:icon="@drawable/ic_tag_price"
+        android:title="laugange"
+        app:actionViewClass="android.widget.ImageView"
+        app:showAsAction="never|ifRoom|collapseActionView|withText" />
+</menu>

@@ -2,6 +2,7 @@ package com.app.ecommerce.activities;
 
 import static com.app.ecommerce.utilities.Constant.GET_CATEGORY_DETAIL;
 
+import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +37,7 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ActivityProduct extends AppCompatActivity implements AdapterProduct.ContactsAdapterListener {
 
@@ -64,7 +66,7 @@ public class ActivityProduct extends AppCompatActivity implements AdapterProduct
         category_name = intent.getStringExtra("category_name");
 
         // toolbar fancy stuff
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(category_name);
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
@@ -108,6 +110,7 @@ public class ActivityProduct extends AppCompatActivity implements AdapterProduct
 
     private void fetchData() {
         JsonArrayRequest request = new JsonArrayRequest(GET_CATEGORY_DETAIL + category_id, new Response.Listener<JSONArray>() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onResponse(JSONArray response) {
                         if (response == null) {
@@ -165,14 +168,10 @@ public class ActivityProduct extends AppCompatActivity implements AdapterProduct
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-
-            case android.R.id.home:
-                onBackPressed();
-                break;
-
-            default:
-                return super.onOptionsItemSelected(menuItem);
+        if (menuItem.getItemId() == android.R.id.home) {
+            onBackPressed();
+        } else {
+            return super.onOptionsItemSelected(menuItem);
         }
         return true;
     }

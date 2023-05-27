@@ -92,10 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
         //update locale language for fragment
 
-
         navigation = findViewById(R.id.navigation);
         navigation.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
-        navigation.setOnNavigationItemSelectedListener(item -> {
+        navigation.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.nav_recent:
                     viewPager.setCurrentItem(0);
@@ -133,18 +132,14 @@ public class MainActivity extends AppCompatActivity {
                 prevMenuItem = navigation.getMenu().getItem(position);
 
                 if (viewPager.getCurrentItem() == 1) {
-                    appBarLayout.setVisibility(View.VISIBLE);
                     toolbar.setTitle(R.string.title_nav_category);
                 } else if (viewPager.getCurrentItem() == 2) {
-                    appBarLayout.setVisibility(View.GONE);
                     toolbar.setTitle(R.string.add_product);
                 } else if (viewPager.getCurrentItem() == 3) {
-                    appBarLayout.setVisibility(View.VISIBLE);
+                    toolbar.setTitle(R.string.add_product);
                 } else if (viewPager.getCurrentItem() == 4) {
-                    appBarLayout.setVisibility(View.VISIBLE);
                     toolbar.setTitle(R.string.title_nav_profile);
                 } else {
-                    appBarLayout.setVisibility(View.VISIBLE);
                     toolbar.setTitle(R.string.app_name);
                 }
             }

@@ -78,10 +78,10 @@ public class ActivityNotificationDetail extends AppCompatActivity {
     WebView txt_product_description;
     ImageView img_product_image;
     Button btn_cart;
+    @SuppressLint("StaticFieldLeak")
     public static DBHelper dbhelper;
     final Context context = this;
     private CollapsingToolbarLayout collapsingToolbarLayout;
-    private AppBarLayout appBarLayout;
     private RelativeLayout lyt_parent;
     private ProgressBar progressBar;
     double resp_tax;
@@ -117,7 +117,7 @@ public class ActivityNotificationDetail extends AppCompatActivity {
 
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("");
-        appBarLayout = findViewById(R.id.appbar);
+        AppBarLayout appBarLayout = findViewById(R.id.appbar);
         appBarLayout.setExpanded(true);
 
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
@@ -177,33 +177,30 @@ public class ActivityNotificationDetail extends AppCompatActivity {
     }
 
     private void makeJsonObjectRequest() {
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, GET_PRODUCT_ID + product_id, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.d("INFO", response.toString());
-                try {
-                    //resp_tax = response.getDouble("tax");
-                    //resp_currency_code = response.getString("currency_code");
-                    product_name = response.getString("product_name");
-                    product_image = response.getString("product_image");
-                    product_price = response.getDouble("product_price");
-                    product_description = response.getString("product_description");
-                    product_quantity = response.getInt("product_quantity");
-                    product_status = response.getString("product_status");
-                    currency_code = response.getString("currency_code");
-                    category_name = response.getString("category_name");
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, GET_PRODUCT_ID + product_id, null, response -> {
+            Log.d("INFO", response.toString());
+            try {
+                //resp_tax = response.getDouble("tax");
+                //resp_currency_code = response.getString("currency_code");
+                product_name = response.getString("product_name");
+                product_image = response.getString("product_image");
+                product_price = response.getDouble("product_price");
+                product_description = response.getString("product_description");
+                product_quantity = response.getInt("product_quantity");
+                product_status = response.getString("product_status");
+                currency_code = response.getString("currency_code");
+                category_name = response.getString("category_name");
 
-                    displayData();
+                displayData();
 
-                    lyt_parent.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.GONE);
+                lyt_parent.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                    lyt_parent.setVisibility(View.GONE);
-                    progressBar.setVisibility(View.GONE);
-                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                lyt_parent.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
             }
         }, error -> {
             VolleyLog.d("INFO", "Error: " + error.getMessage());
@@ -214,6 +211,7 @@ public class ActivityNotificationDetail extends AppCompatActivity {
         MyApplication.getInstance().addToRequestQueue(jsonObjReq);
     }
 
+    @SuppressLint({"SetTextI18n", "SetJavaScriptEnabled"})
     public void displayData() {
         txt_product_name.setText(product_name);
 
@@ -353,6 +351,7 @@ public class ActivityNotificationDetail extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
@@ -392,7 +391,7 @@ public class ActivityNotificationDetail extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     @SuppressWarnings("deprecation")
     public class ShareTask extends AsyncTask<String, String, String> {
-        private Context context;
+        private final Context context;
         private ProgressDialog pDialog;
         URL myFileUrl;
         Bitmap bmImg = null;

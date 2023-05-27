@@ -132,6 +132,7 @@ public class ActivityHistory extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -247,8 +248,8 @@ public class ActivityHistory extends AppCompatActivity {
 
     class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
-        private GestureDetector gestureDetector;
-        private ClickListener clickListener;
+        private final GestureDetector gestureDetector;
+        private final ClickListener clickListener;
 
         public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final ClickListener clickListener) {
 
@@ -301,6 +302,7 @@ public class ActivityHistory extends AppCompatActivity {
             mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
 
+        @SuppressLint("InflateParams")
         final View view = getLayoutInflater().inflate(R.layout.item_bottom_sheet, null);
         ((TextView) view.findViewById(R.id.sheet_code)).setText(code.get(position));
         ((TextView) view.findViewById(R.id.sheet_date)).setText(Utils.getFormatedDate(date_time.get(position)));

@@ -155,6 +155,7 @@ public class ActivityProductDetail extends AppCompatActivity {
         btn_cart = findViewById(R.id.btn_add_cart);
     }
 
+    @SuppressLint({"SetTextI18n", "SetJavaScriptEnabled"})
     public void displayData() {
         txt_product_name.setText(product_name);
 
@@ -310,24 +311,22 @@ public class ActivityProductDetail extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 break;
-
             case R.id.cart:
                 Intent intent = new Intent(getApplicationContext(), ActivityCart.class);
                 intent.putExtra("tax", resp_tax);
                 intent.putExtra("currency_code", resp_currency_code);
                 startActivity(intent);
                 break;
-
             case R.id.share:
                 requestStoragePermission();
                 break;
-
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
@@ -349,7 +348,7 @@ public class ActivityProductDetail extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     @SuppressWarnings("deprecation")
     public class ShareTask extends AsyncTask<String, String, String> {
-        private Context context;
+        private final Context context;
         private ProgressDialog pDialog;
         URL myFileUrl;
         Bitmap bmImg = null;

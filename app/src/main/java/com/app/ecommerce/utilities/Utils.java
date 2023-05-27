@@ -1,5 +1,6 @@
 package com.app.ecommerce.utilities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
@@ -70,8 +71,8 @@ public class Utils {
 
     public static String getFormatedDateSimple(String date_str) {
         if (date_str != null && !date_str.trim().equals("")) {
-            SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            SimpleDateFormat newFormat = new SimpleDateFormat("dd MMM yyyy");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat newFormat = new SimpleDateFormat("dd MMM yyyy");
             try {
                 String newStr = newFormat.format(oldFormat.parse(date_str));
                 return newStr;
@@ -85,8 +86,8 @@ public class Utils {
 
     public static String getFormatedDate(String date_str) {
         if (date_str != null && !date_str.trim().equals("")) {
-            SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            SimpleDateFormat newFormat = new SimpleDateFormat("dd MMM yyyy, HH:mm:ss");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat newFormat = new SimpleDateFormat("dd MMM yyyy, HH:mm:ss");
             try {
                 String newStr = newFormat.format(oldFormat.parse(date_str));
                 return newStr;

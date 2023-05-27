@@ -3,13 +3,13 @@ package com.app.ecommerce.activities;
 import static com.app.ecommerce.utilities.Constant.GET_SHIPPING;
 import static com.app.ecommerce.utilities.Constant.POST_ORDER;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.SQLException;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -52,7 +52,6 @@ import java.util.Random;
 @SuppressWarnings("deprecation")
 public class ActivityCheckout extends AppCompatActivity {
 
-    public static final String TAG = "ActivityCheckout";
     RequestQueue requestQueue;
     Button btn_submit_order;
     EditText edt_name, edt_email, edt_phone, edt_address, edt_shipping, edt_order_list, edt_order_total, edt_comment;
@@ -65,14 +64,14 @@ public class ActivityCheckout extends AppCompatActivity {
     ArrayList<ArrayList<Object>> data;
     private static final String ALLOWED_CHARACTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     View view;
-    private String rand = getRandomString(9);
+    private final String rand = getRandomString(9);
+    @SuppressLint("SimpleDateFormat")
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String date = dateFormat.format(Calendar.getInstance().getTime());
     SharedPref sharedPref;
     private Spinner spinner;
     private ArrayList<String> arrayList;
     private JSONArray result;
-    String Result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -285,6 +284,7 @@ public class ActivityCheckout extends AppCompatActivity {
         str_currency_code = intent.getStringExtra("currency_code");
     }
 
+    @SuppressLint("SetTextI18n")
     public void getDataFromDatabase() {
 
         data = dbhelper.getAllData();
@@ -371,14 +371,11 @@ public class ActivityCheckout extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

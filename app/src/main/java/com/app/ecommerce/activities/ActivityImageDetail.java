@@ -2,6 +2,7 @@ package com.app.ecommerce.activities;
 
 import static com.app.ecommerce.utilities.Utils.PERMISSIONS_REQUEST;
 
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -65,6 +66,7 @@ public class ActivityImageDetail extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {

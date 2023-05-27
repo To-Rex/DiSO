@@ -66,7 +66,7 @@ public class FragmentRecent extends Fragment implements AdapterProduct.ContactsA
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(Objects.requireNonNull(getActivity()), R.dimen.item_offset);
+        ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(requireActivity(), R.dimen.item_offset);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
@@ -81,7 +81,7 @@ public class FragmentRecent extends Fragment implements AdapterProduct.ContactsA
         swipeRefreshLayout.setOnRefreshListener(() -> {
             productList.clear();
             new Handler().postDelayed(() -> {
-                if (Utils.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
+                if (Utils.isNetworkAvailable(requireActivity())) {
                     swipeRefreshLayout.setRefreshing(false);
                     fetchData();
                 } else {
@@ -125,7 +125,7 @@ public class FragmentRecent extends Fragment implements AdapterProduct.ContactsA
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search, menu);
 
-        SearchManager searchManager = (SearchManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
@@ -161,6 +161,7 @@ public class FragmentRecent extends Fragment implements AdapterProduct.ContactsA
     @Override
     public void onContactSelected(Product product) {
         Intent intent = new Intent(getActivity(), ActivityProductDetail.class);
+        Toast.makeText(getActivity(), product.getCategory_id(), Toast.LENGTH_SHORT).show();
         intent.putExtra("product_id", product.getProduct_id());
         intent.putExtra("title", product.getProduct_name());
         intent.putExtra("image", product.getProduct_image());
@@ -168,6 +169,7 @@ public class FragmentRecent extends Fragment implements AdapterProduct.ContactsA
         intent.putExtra("product_description", product.getProduct_description());
         intent.putExtra("product_quantity", product.getProduct_quantity());
         intent.putExtra("product_status", product.getProduct_status());
+        Toast.makeText(getActivity(), product.getProduct_status(), Toast.LENGTH_SHORT).show();
         intent.putExtra("currency_code", product.getCurrency_code());
         intent.putExtra("category_name", product.getCategory_name());
         startActivity(intent);
