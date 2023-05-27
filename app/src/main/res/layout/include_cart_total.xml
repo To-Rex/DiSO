@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:background="@color/color_3"
+    android:background="@drawable/all_radius1"
     android:padding="16dp">
 
     <LinearLayout
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:background="@color/color_2"
+        android:background="@drawable/all_radius"
         app:mrl_rippleAlpha="0.2"
         app:mrl_rippleColor="@color/color_2"
         app:mrl_rippleHover="true"

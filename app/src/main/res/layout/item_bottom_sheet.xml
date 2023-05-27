@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:background="@color/white"
+    android:background="@color/transparent"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/top_radius"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
 
@@ -22,7 +22,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:text="@string/txt_total_order"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            tools:ignore="RtlHardcoded" />
 
         <TextView
             android:id="@+id/sheet_order_total"
@@ -33,7 +34,8 @@
             android:layout_marginLeft="16dp"
             android:text=""
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            tools:ignore="RtlHardcoded" />
 
         <TextView
             android:id="@+id/sheet_date"
@@ -47,53 +49,55 @@
             android:layout_marginRight="16dp"
             android:gravity="center_vertical"
             android:text=""
-            android:textColor="@color/white" />
-
+            android:textColor="@color/white"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:background="@color/grey_soft"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/sheet_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:gravity="center_vertical"
-            android:text="AXJKH8732"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/colorPrimary"
-            tools:ignore="HardcodedText,RtlHardcoded" />
-
-        <ImageView
-            android:id="@+id/img_copy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:src="@drawable/ic_copy"
-            app:tint="@color/colorPrimary"
-            tools:ignore="ContentDescription" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/white"
         android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/all_radius"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/sheet_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:gravity="center_vertical"
+                android:text="AXJKH8732"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
+            <ImageView
+                android:id="@+id/img_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/ic_copy"
+                app:tint="@color/white"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/sheet_order_list"
             android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_height="match_parent"
             android:textColor="@color/color_3"
             android:text=""

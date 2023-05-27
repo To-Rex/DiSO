@@ -24,8 +24,9 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:scrollbars="none" />
 
@@ -36,7 +37,16 @@
             layout="@layout/include_cart_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" />
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_alignBottom="@+id/vphls"
+            android:layout_marginBottom="18dp" />
+
+        <View
+            android:id="@+id/vphls"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="20dp" />
 
     </RelativeLayout>
 
