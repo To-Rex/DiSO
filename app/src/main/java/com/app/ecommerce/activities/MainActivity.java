@@ -252,7 +252,6 @@ public class MainActivity extends AppCompatActivity {
         });
         AlertDialog alert = builder.create();
         alert.show();
-
     }
 
     @Override
@@ -263,13 +262,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -282,12 +279,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void exitApp() {
-        if ((System.currentTimeMillis() - exitTime) > 2000) {
+        /*if ((System.currentTimeMillis() - exitTime) > 2000) {
             Toast.makeText(this, getString(R.string.msg_exit), Toast.LENGTH_SHORT).show();
             exitTime = System.currentTimeMillis();
         } else {
             finish();
-        }
+        }*/
+        //alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.confirm);
+        builder.setMessage(getString(R.string.msg_exit));
+        builder.setCancelable(false);
+        builder.setPositiveButton(getString(R.string.dialog_option_yes), (dialog, which) -> {
+            finish();
+        });
+
+        builder.setNegativeButton(getString(R.string.dialog_option_no), (dialog, which) -> {
+            dialog.cancel();
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 
     private void makeJsonObjectRequest() {

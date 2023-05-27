@@ -47,13 +47,23 @@
 
     <style name="MyBottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="itemTextAppearanceActive">@style/MyBottomNavigationView.TextAppearance</item>
-        <item name="itemTextAppearanceInactive">@style/MyBottomNavigationView.TextAppearance</item>
+        <item name="itemTextAppearanceInactive">@style/MyBottomNavigationView.TextAppearance.activ</item>
+
     </style>
 
     <style name="MyBottomNavigationView.TextAppearance" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textStyle">bold</item>
         <item name="fontFamily">@font/custom_font</item>
+        <item name="itemIconTint">@color/white</item>
+        <item name="itemTextColor">@color/green</item>
+    </style>
+
+    <style name="MyBottomNavigationView.TextAppearance.activ" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/custom_font</item>
+        <item name="itemIconTint">@color/green</item>
     </style>
 
     <style name="ToolbarFontStyle" parent="@style/Base.TextAppearance.AppCompat.Title">
