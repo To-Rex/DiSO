@@ -11,6 +11,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
         android:layout_centerVertical="true"
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp">
@@ -18,6 +19,7 @@
             android:layout_width="match_parent"
             android:padding="10dp"
             android:layout_height="wrap_content">
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/category_image"
                 android:layout_width="54dp"
@@ -38,7 +40,7 @@
 
                 <TextView
                     android:id="@+id/category_name"
-                    android:layout_width="10dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
