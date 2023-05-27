@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/lytTotal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:background="@color/colorPrimary"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_3"
     android:padding="16dp">
 
     <LinearLayout
@@ -48,22 +48,22 @@
         android:id="@+id/lyt_checkout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:background="@color/color_2"
         app:mrl_rippleAlpha="0.2"
-        app:mrl_rippleColor="@color/ripple_color"
+        app:mrl_rippleColor="@color/color_2"
         app:mrl_rippleHover="true"
         app:mrl_rippleOverlay="true">
 
-    <Button
-        android:id="@+id/btn_checkout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_checkout"
-        android:background="@color/transparent"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/btn_checkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:text="@string/btn_checkout"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
     </com.balysv.materialripple.MaterialRippleLayout>
 

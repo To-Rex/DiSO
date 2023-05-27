@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
@@ -68,7 +70,8 @@
             android:gravity="center_vertical"
             android:text="AXJKH8732"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/green" />
+            android:textColor="@color/colorPrimary"
+            tools:ignore="HardcodedText,RtlHardcoded" />
 
         <ImageView
             android:id="@+id/img_copy"
@@ -77,7 +80,8 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:src="@drawable/ic_copy"
-            android:tint="@color/green" />
+            app:tint="@color/colorPrimary"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -91,6 +95,7 @@
             android:id="@+id/sheet_order_list"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:textColor="@color/color_3"
             android:text=""
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 

@@ -1,102 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/color_2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.balysv.materialripple.MaterialRippleLayout
-        android:id="@+id/lyt_parent"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:mrl_rippleAlpha="0.2"
-        app:mrl_rippleColor="@color/ripple_color"
-        app:mrl_rippleHover="true"
-        app:mrl_rippleOverlay="true">
-
-        <LinearLayout
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp">
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:id="@+id/lyt_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:orientation="vertical">
+            app:mrl_rippleAlpha="0.2"
+            app:mrl_rippleColor="@color/ripple_color"
+            app:mrl_rippleHover="true"
+            app:mrl_rippleOverlay="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="14dp">
-
-                <RelativeLayout
-                    android:id="@+id/lyt_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/product_image"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:src="@drawable/ic_loading"
-                        app:shapeAppearanceOverlay="@style/ShapeAppearance.Image.Rounded" />
-
-                </RelativeLayout>
+                android:background="@android:color/white"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/product_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="3dp"
-                        android:text="Product Name"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:padding="14dp">
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:id="@+id/lyt_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toStartOf="@+id/product_price"
-                            android:layout_toLeftOf="@+id/product_price"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/product_quantity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="5"
-                                android:textSize="12sp" />
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/product_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:text="10 USD"
-                            android:textColor="@color/txt_price_color"
-                            android:textStyle="bold" />
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/product_image"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/ic_loading"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Image.Rounded" />
 
                     </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/product_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp"
+                            android:text="Product Name"
+                            android:textColor="@color/color_3"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_toStartOf="@+id/product_price"
+                                android:layout_toLeftOf="@+id/product_price"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/product_quantity"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/color_2"
+                                    android:text="5"
+                                    android:textSize="12sp"
+                                    tools:ignore="HardcodedText" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/product_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:text="10 USD"
+                                android:textColor="@color/colorPrimary"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-    </com.balysv.materialripple.MaterialRippleLayout>
+        </com.balysv.materialripple.MaterialRippleLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
