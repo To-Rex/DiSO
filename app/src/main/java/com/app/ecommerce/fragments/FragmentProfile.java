@@ -23,7 +23,6 @@ import com.balysv.materialripple.MaterialRippleLayout;
 import java.util.Objects;
 
 public class FragmentProfile extends Fragment {
-
     private SharedPref sharedPref;
     TextView txt_user_name;
     TextView txt_user_email;
@@ -32,11 +31,9 @@ public class FragmentProfile extends Fragment {
     MaterialRippleLayout btn_edit_user;
     CardView btn_order_history, btn_rate, btn_share, btn_privacy;
     LinearLayout lyt_root;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
         sharedPref = new SharedPref(getActivity());
 
         lyt_root = view.findViewById(R.id.lyt_root);
@@ -80,13 +77,10 @@ public class FragmentProfile extends Fragment {
             intent.setType("text/plain");
             startActivity(intent);
         });
-
         btn_privacy = view.findViewById(R.id.btn_privacy);
         btn_privacy.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.privacy_policy_url)))));
-
         return view;
     }
-
     @Override
     public void onResume() {
         txt_user_name.setText(sharedPref.getYourName());
