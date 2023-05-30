@@ -15,4 +15,5 @@ public class Constant {
     public static final String GET_SHIPPING = BASE_URL + "/api/api.php?get_shipping";
     public static final String POST_ORDER = BASE_URL + "/api/api.php?post_order";
 
+    public static final String POST_ADD_PRODUCT = BASE_URL + "/api/api.php?post_product";
 }

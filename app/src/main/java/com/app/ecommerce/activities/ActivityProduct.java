@@ -109,26 +109,23 @@ public class ActivityProduct extends AppCompatActivity implements AdapterProduct
     }
 
     private void fetchData() {
-        JsonArrayRequest request = new JsonArrayRequest(GET_CATEGORY_DETAIL + category_id, new Response.Listener<JSONArray>() {
-                    @SuppressLint("NotifyDataSetChanged")
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        if (response == null) {
-                            Toast.makeText(getApplicationContext(), R.string.failed_fetch_data, Toast.LENGTH_LONG).show();
-                            return;
-                        }
+        @SuppressLint("NotifyDataSetChanged")
+        JsonArrayRequest request = new JsonArrayRequest(GET_CATEGORY_DETAIL + category_id, response -> {
+            if (response == null) {
+                Toast.makeText(getApplicationContext(), R.string.failed_fetch_data, Toast.LENGTH_LONG).show();
+                return;
+            }
 
-                        List<Product> items = new Gson().fromJson(response.toString(), new TypeToken<List<Product>>() {
-                        }.getType());
+            List<Product> items = new Gson().fromJson(response.toString(), new TypeToken<List<Product>>() {
+            }.getType());
 
-                        // adding contacts to contacts list
-                        productList.clear();
-                        productList.addAll(items);
+            // adding contacts to contacts list
+            productList.clear();
+            productList.addAll(items);
 
-                        // refreshing recycler view
-                        mAdapter.notifyDataSetChanged();
-                    }
-                }, error -> {
+            // refreshing recycler view
+            mAdapter.notifyDataSetChanged();
+        }, error -> {
                     // error in getting json
                     Log.e("INFO", "Error: " + error.getMessage());
                     Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();

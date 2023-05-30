@@ -53,12 +53,15 @@
             </RelativeLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
-
+        <!--up to BottomNavigationView-->
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_marginBottom="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
