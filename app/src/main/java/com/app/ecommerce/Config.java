@@ -5,7 +5,7 @@ public class Config {
     //your admin panel url
     public static final String ADMIN_PANEL_URL = "https://ecommerce.wesmart.uz/";
     //OneSignal App Id
-    public static final String ONESIGNAL_APP_ID = "00000000-0000-0000-0000-000000000000";
+    public static final String ONESIGNAL_APP_ID = "1b1fb549-381d-4cc7-9494-77b72c2c85a5";
     //fcm notification topic should be written in lowercase without space, use underscore
     public static final String FCM_NOTIFICATION_TOPIC = "ecommerce_android_app_topic";
 

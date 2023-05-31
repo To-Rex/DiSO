@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,7 +39,6 @@ import com.app.ecommerce.utilities.DBHelper;
 import com.app.ecommerce.utilities.Utils;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.android.material.navigation.NavigationBarView;
 
 import org.json.JSONException;

@@ -119,4 +119,10 @@
     <string name="collins_street_west_victoria_8007_australia_envato_hq_121_king_street_melbourne_victoria_3000_australia">Collins Street West Victoria 8007 Australia, Envato HQ: 121 King Street, Melbourne Victoria 3000 Australia</string>
     <string name="_10_usd">10 USD</string>
 
+    <string name="product_name">product name</string>
+    <string name="product_price">product price</string>
+    <string name="product_quantity">product quantity</string>
+    <string name="product_description">product description</string>
+    <string name="category">Category</string>
+
 </resources>
