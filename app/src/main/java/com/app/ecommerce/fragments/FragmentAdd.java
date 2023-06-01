@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -39,9 +38,7 @@ public class FragmentAdd extends Fragment {
     private EditText add_priceAdd;
     private EditText add_descriptionAdd;
     private EditText add_quantityAdd;
-    private ImageView add_imageAdd;
     private ImageView add_image;
-    private Button add_productBtn;
     private TextView add_categoryAdd;
     List<Category> items;
     ArrayList<String> categoryList;
@@ -57,9 +54,9 @@ public class FragmentAdd extends Fragment {
         add_priceAdd = view.findViewById(R.id.add_priceAdd);
         add_descriptionAdd = view.findViewById(R.id.add_descriptionAdd);
         add_quantityAdd = view.findViewById(R.id.add_quantityAdd);
-        add_imageAdd = view.findViewById(R.id.add_imageAdd);
+        ImageView add_imageAdd = view.findViewById(R.id.add_imageAdd);
         add_image = view.findViewById(R.id.add_image);
-        add_productBtn = view.findViewById(R.id.add_productBtn);
+        Button add_productBtn = view.findViewById(R.id.add_productBtn);
         add_categoryAdd = view.findViewById(R.id.add_productCategory);
 
         getCategory();
@@ -75,6 +72,7 @@ public class FragmentAdd extends Fragment {
         add_categoryAdd.setOnClickListener(v -> {
             if (items == null) {
                 Toast.makeText(getActivity(), "Please wait...", Toast.LENGTH_SHORT).show();
+                getCategory();
                 return;
             }
             categoryList.clear();
@@ -95,8 +93,17 @@ public class FragmentAdd extends Fragment {
             String price = add_priceAdd.getText().toString();
             String description = add_descriptionAdd.getText().toString();
             String quantity = add_quantityAdd.getText().toString();
-            if (product.isEmpty() || price.isEmpty() || description.isEmpty() || quantity.isEmpty()) {
-                Toast.makeText(getActivity(), "Please fill all the fields", Toast.LENGTH_SHORT).show();
+            if (product.isEmpty()) {
+                add_productAdd.setError("Enter product name");
+                return;
+            }else if (price.isEmpty()) {
+                add_priceAdd.setError("Enter product price");
+                return;
+            }else if (quantity.isEmpty()) {
+                add_quantityAdd.setError("Enter product quantity");
+                return;
+            }else if (category_id.isEmpty()) {
+                add_categoryAdd.setError("Enter product Category");
                 return;
             }
 
