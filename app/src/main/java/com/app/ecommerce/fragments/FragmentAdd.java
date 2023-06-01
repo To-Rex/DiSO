@@ -1,22 +1,39 @@
 package com.app.ecommerce.fragments;
+
+import static android.app.Activity.RESULT_OK;
+
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
+
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.ecommerce.R;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import com.app.ecommerce.models.Category;
+import com.app.ecommerce.utilities.Constant;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-public class FragmentAdd extends Fragment{
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class FragmentAdd extends Fragment {
 
     private EditText add_productAdd;
     private EditText add_priceAdd;
@@ -25,6 +42,12 @@ public class FragmentAdd extends Fragment{
     private ImageView add_imageAdd;
     private ImageView add_image;
     private Button add_productBtn;
+    private TextView add_categoryAdd;
+    List<Category> items;
+    ArrayList<String> categoryList;
+    String category_id = "";
+
+    private static final int PICK_IMAGE_REQUEST_CODE = 1;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +60,35 @@ public class FragmentAdd extends Fragment{
         add_imageAdd = view.findViewById(R.id.add_imageAdd);
         add_image = view.findViewById(R.id.add_image);
         add_productBtn = view.findViewById(R.id.add_productBtn);
+        add_categoryAdd = view.findViewById(R.id.add_productCategory);
+
+        getCategory();
+        categoryList = new ArrayList<>();
+
+        add_imageAdd.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE);
+        });
+
+        add_categoryAdd.setOnClickListener(v -> {
+            if (items == null) {
+                Toast.makeText(getActivity(), "Please wait...", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            categoryList.clear();
+            PopupMenu popupMenu = new PopupMenu(getActivity(), add_categoryAdd);
+            for (int i = 0; i < items.size(); i++) {
+                popupMenu.getMenu().add(0, i, i, items.get(i).getCategory_name());
+            }
+            popupMenu.setOnMenuItemClickListener(item -> {
+                add_categoryAdd.setText(item.getTitle());
+                category_id = items.get(item.getItemId()).getCategory_id();
+                return true;
+            });
+            popupMenu.show();
+        });
 
         add_productBtn.setOnClickListener(v -> {
             String product = add_productAdd.getText().toString();
@@ -49,7 +101,6 @@ public class FragmentAdd extends Fragment{
             }
 
             String url = "https://ecommerce.wesmart.uz/api/api.php?post_product";
-            //post url, body from-data [{"key":"product_id","value":"3","type":"text","enabled":false},{"key":"product_name","value":"bitta O`zim","type":"text","enabled":true,"description":""},{"key":"product_price","value":"38700","type":"text","enabled":true},{"key":"product_status","value":"Available","type":"text","enabled":true},{"key":"product_image","type":"file","enabled":true,"value":["/Users/yorvoration/Documents/Documents - Dilshodjon’s MacBook Pro/2023-01-08 16.28.34.jpg"],"warning":"This file isn't in your working directory. Teammates you share this request with won't be able to use this file. To make collaboration easier you can setup your working directory in Settings."},{"key":"product_description","value":"ajoyib","type":"text","enabled":true},{"key":"product_quantity","value":"3","type":"text","enabled":true},{"key":"category_id","value":"4","type":"text","enabled":true}]
             StringRequest stringRequest = new StringRequest(1, url, response -> {
                 Toast.makeText(getActivity(), "Product added successfully", Toast.LENGTH_SHORT).show();
                 add_productAdd.setText("");
@@ -65,15 +116,37 @@ public class FragmentAdd extends Fragment{
                     params.put("product_status", "Available");
                     params.put("product_description", description);
                     params.put("product_quantity", quantity);
-                    params.put("category_id", "4");
+                    params.put("category_id", category_id);
                     return params;
                 }
             };
             Volley.newRequestQueue(requireActivity()).add(stringRequest);
-
-
         });
 
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            Uri selectedImageUri = data.getData();
+            add_image.setImageURI(selectedImageUri);
+        }
+    }
+
+    private void getCategory() {
+        JsonArrayRequest request = new JsonArrayRequest(Constant.GET_CATEGORY, response -> {
+            if (response == null) {
+                Toast.makeText(getActivity(), "Couldn't fetch the category! Pleas try again.", Toast.LENGTH_LONG).show();
+            } else {
+                items = new Gson().fromJson(response.toString(), new TypeToken<List<Category>>() {
+                }.getType());
+            }
+
+        }, error -> Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show());
+        Volley.newRequestQueue(requireActivity()).add(request);
+
     }
 }

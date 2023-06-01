@@ -76,11 +76,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_quantityAdd" />
-    <EditText
+    <TextView
         android:id="@+id/add_productCategory"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
+        android:gravity="center_vertical"
+        android:textSize="18sp"
+        android:textColor="@color/black"
         android:layout_marginTop="20dp"
         android:background="@drawable/all_radius2"
         android:hint="@string/category"
@@ -135,20 +138,35 @@
             android:id="@+id/add_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/img_empty_history"
+            android:scaleType="fitXY"
+            android:src="@drawable/empty_icon"
             tools:ignore="ContentDescription" />
     </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/add_imageAdd"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/add_box"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView2"
-        app:layout_constraintEnd_toEndOf="@+id/cardView2"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintEnd_toEndOf="@+id/cardView2">
+        <ImageView
+            android:id="@+id/add_imageAdd"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/add_box"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView2"
+            app:layout_constraintEnd_toEndOf="@+id/cardView2"
+            tools:ignore="ContentDescription" />
+
+    </androidx.cardview.widget.CardView>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
