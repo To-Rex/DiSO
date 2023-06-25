@@ -24,14 +24,13 @@ import com.android.volley.toolbox.Volley;
 import com.app.ecommerce.R;
 import com.app.ecommerce.models.Category;
 import com.app.ecommerce.utilities.Constant;
+import com.app.ecommerce.utilities.SharedPref;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 public class FragmentAdd extends Fragment {
 
     private EditText add_productAdd;
@@ -39,12 +38,16 @@ public class FragmentAdd extends Fragment {
     private EditText add_descriptionAdd;
     private EditText add_quantityAdd;
     private ImageView add_image;
-    private TextView add_categoryAdd;
+    private TextView add_categoryAdd,add_used,add_new;
     List<Category> items;
     ArrayList<String> categoryList;
-    String category_id = "";
+
+    String category_id = "",imageUrl = "",phoneNumber = "",is_used = "";
+
+    Boolean isUsed = false;
 
     private static final int PICK_IMAGE_REQUEST_CODE = 1;
+
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,9 +61,39 @@ public class FragmentAdd extends Fragment {
         add_image = view.findViewById(R.id.add_image);
         Button add_productBtn = view.findViewById(R.id.add_productBtn);
         add_categoryAdd = view.findViewById(R.id.add_productCategory);
+        add_used = view.findViewById(R.id.add_used);
+        add_new = view.findViewById(R.id.add_new);
 
         getCategory();
         categoryList = new ArrayList<>();
+
+        //get shared preferences for phone number
+        SharedPref sharedPref = new SharedPref(getActivity());
+        phoneNumber = sharedPref.getYourPhone();
+        if (phoneNumber.isEmpty()) {
+            Toast.makeText(getActivity(), "Please login first", Toast.LENGTH_SHORT).show();
+            phoneNumber = "nomalum raqam";
+        }
+
+        isSetUsed();
+
+        add_used.setOnClickListener(v -> {
+            add_used.setBackgroundResource(R.drawable.all_radius3);
+            add_used.setTextColor(getResources().getColor(R.color.white));
+            add_new.setBackgroundResource(R.drawable.all_radius4);
+            add_new.setTextColor(getResources().getColor(R.color.color_3));
+            isUsed = false;
+            isSetUsed();
+        });
+
+        add_new.setOnClickListener(v -> {
+            add_new.setBackgroundResource(R.drawable.all_radius6);
+            add_new.setTextColor(getResources().getColor(R.color.white));
+            add_used.setBackgroundResource(R.drawable.all_radius5);
+            add_used.setTextColor(getResources().getColor(R.color.color_3));
+            isUsed = true;
+            isSetUsed();
+        });
 
         add_imageAdd.setOnClickListener(v -> {
             Intent intent = new Intent();
@@ -96,13 +129,13 @@ public class FragmentAdd extends Fragment {
             if (product.isEmpty()) {
                 add_productAdd.setError("Enter product name");
                 return;
-            }else if (price.isEmpty()) {
+            } else if (price.isEmpty()) {
                 add_priceAdd.setError("Enter product price");
                 return;
-            }else if (quantity.isEmpty()) {
+            } else if (quantity.isEmpty()) {
                 add_quantityAdd.setError("Enter product quantity");
                 return;
-            }else if (category_id.isEmpty()) {
+            } else if (category_id.isEmpty()) {
                 add_categoryAdd.setError("Enter product Category");
                 return;
             }
@@ -121,24 +154,34 @@ public class FragmentAdd extends Fragment {
                     params.put("product_name", product);
                     params.put("product_price", price);
                     params.put("product_status", "Available");
+                    //params.put("product_image", file);
                     params.put("product_description", description);
                     params.put("product_quantity", quantity);
                     params.put("category_id", category_id);
+                    params.put("state", is_used);
+                    params.put("user_phone", phoneNumber);
                     return params;
                 }
             };
             Volley.newRequestQueue(requireActivity()).add(stringRequest);
         });
-
         return view;
     }
 
+    private void isSetUsed() {
+        if (isUsed){
+            is_used = "used or new";
+        }else {
+            is_used = "used";
+        }
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             Uri selectedImageUri = data.getData();
+            imageUrl = selectedImageUri.toString();
             add_image.setImageURI(selectedImageUri);
         }
     }

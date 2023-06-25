@@ -4,7 +4,9 @@ import static com.app.ecommerce.utilities.Constant.GET_TAX_CURRENCY;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.SQLException;
 import android.net.Uri;
@@ -48,22 +50,20 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String TAG = "MainActivity";
     private BottomNavigationView navigation;
     public ViewPager viewPager;
     private Toolbar toolbar;
     MenuItem prevMenuItem;
     int pager_number = 5;
     DBHelper dbhelper;
-    private long exitTime = 0;
     View view;
 
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Locale locale = new Locale("eng");
+        SharedPreferences sharedPreferences = this.getSharedPreferences("language", Context.MODE_PRIVATE);
+        Locale locale = new Locale(sharedPreferences.getString("language", "eng"));
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
@@ -198,15 +198,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public class MyAdapter extends FragmentPagerAdapter {
-
         public MyAdapter(FragmentManager fm) {
             super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         }
-
         @NonNull
         @Override
         public Fragment getItem(int position) {
-
             switch (position) {
                 case 0:
                     return new FragmentRecent();
@@ -283,17 +280,12 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle(R.string.confirm);
         builder.setMessage(getString(R.string.msg_exit));
         builder.setCancelable(false);
-        builder.setPositiveButton(getString(R.string.dialog_option_yes), (dialog, which) -> {
-            finish();
-        });
+        builder.setPositiveButton(getString(R.string.dialog_option_yes), (dialog, which) -> finish());
 
-        builder.setNegativeButton(getString(R.string.dialog_option_no), (dialog, which) -> {
-            dialog.cancel();
-        });
+        builder.setNegativeButton(getString(R.string.dialog_option_no), (dialog, which) -> dialog.cancel());
 
         AlertDialog alert = builder.create();
         alert.show();
-
     }
 
     private void makeJsonObjectRequest() {
@@ -302,7 +294,6 @@ public class MainActivity extends AppCompatActivity {
             try {
                 final Double tax = response.getDouble("tax");
                 final String currency_code = response.getString("currency_code");
-
                 ImageButton btn_cart = findViewById(R.id.btn_add_cart);
                 btn_cart.setOnClickListener(v -> {
                     Intent intent = new Intent(getApplicationContext(), ActivityCart.class);
@@ -310,7 +301,6 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("currency_code", currency_code);
                     startActivity(intent);
                 });
-
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();

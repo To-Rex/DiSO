@@ -24,13 +24,13 @@ import java.util.Locale;
 
 public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.MyViewHolder> implements Filterable {
 
-    private Context context;
-    private List<Product> productList;
+    private final Context context;
+    private final List<Product> productList;
     private List<Product> productListFiltered;
-    private ContactsAdapterListener listener;
+    private final ContactsAdapterListener listener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView product_name, product_price;
+        public TextView product_name, product_price, txt_state;
         public ImageView product_image;
 
         public MyViewHolder(View view) {
@@ -38,6 +38,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.MyViewHo
             product_name = view.findViewById(R.id.product_name);
             product_price = view.findViewById(R.id.product_price);
             product_image = view.findViewById(R.id.category_image);
+            txt_state = view.findViewById(R.id.txt_state);
 
             view.setOnClickListener(v -> listener.onContactSelected(productListFiltered.get(getAdapterPosition())));
         }
@@ -62,6 +63,11 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final Product product = productListFiltered.get(position);
         holder.product_name.setText(product.getProduct_name());
+        if (product.getState()!=null && product.getState().equals("used")) {
+            holder.txt_state.setText(context.getString(R.string.b_u));
+        }else {
+            holder.txt_state.setText(context.getString(R.string.b_n));
+        }
 
         if (Config.ENABLE_DECIMAL_ROUNDING) {
             String price = String.format(Locale.GERMAN, "%1$,.0f", product.getProduct_price());

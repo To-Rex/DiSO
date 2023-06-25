@@ -39,7 +39,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class FragmentRecent extends Fragment implements AdapterProduct.ContactsAdapterListener {
 
@@ -127,7 +126,7 @@ public class FragmentRecent extends Fragment implements AdapterProduct.ContactsA
 
         SearchManager searchManager = (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
         // listening to search query text change
@@ -161,7 +160,6 @@ public class FragmentRecent extends Fragment implements AdapterProduct.ContactsA
     @Override
     public void onContactSelected(Product product) {
         Intent intent = new Intent(getActivity(), ActivityProductDetail.class);
-        Toast.makeText(getActivity(), product.getCategory_id(), Toast.LENGTH_SHORT).show();
         intent.putExtra("product_id", product.getProduct_id());
         intent.putExtra("title", product.getProduct_name());
         intent.putExtra("image", product.getProduct_image());
@@ -169,9 +167,10 @@ public class FragmentRecent extends Fragment implements AdapterProduct.ContactsA
         intent.putExtra("product_description", product.getProduct_description());
         intent.putExtra("product_quantity", product.getProduct_quantity());
         intent.putExtra("product_status", product.getProduct_status());
-        Toast.makeText(getActivity(), product.getProduct_status(), Toast.LENGTH_SHORT).show();
         intent.putExtra("currency_code", product.getCurrency_code());
         intent.putExtra("category_name", product.getCategory_name());
+        intent.putExtra("state", product.getState());
+        intent.putExtra("user_phone", product.getUser_phone());
         startActivity(intent);
     }
 

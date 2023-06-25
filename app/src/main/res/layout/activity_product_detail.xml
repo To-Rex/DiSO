@@ -53,7 +53,8 @@
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_loading"
-                            app:layout_collapseMode="parallax" />
+                            app:layout_collapseMode="parallax"
+                            card_view:ignore="ContentDescription" />
 
                     </com.balysv.materialripple.MaterialRippleLayout>
 
@@ -94,30 +95,49 @@
                     android:layout_height="match_parent"
                     android:background="@color/color_2"
                     android:orientation="vertical">
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
                     <TextView
                         android:id="@+id/product_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:layout_marginLeft="18dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:textColor="@color/white"
-                        android:layout_marginRight="10dp"
-                        android:text="Ayam Goreng"
+                        android:text="@string/menu_name"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
                         android:textSize="22sp"
                         android:textStyle="bold" />
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/txt_state1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/white"
+                        android:text="@string/b_u"
+                        android:paddingEnd="10dp"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                        android:textSize="19sp"
+                        card_view:ignore="RtlSymmetry" />
+
+                </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:layout_marginLeft="18dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
-                        android:layout_marginRight="10dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -125,13 +145,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            card_view:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:src="@drawable/ic_tag_price"
-                                app:tint="@color/available" />
+                                app:tint="@color/available"
+                                card_view:ignore="ContentDescription" />
 
                             <TextView
                                 android:id="@+id/product_price"
@@ -145,22 +167,29 @@
                                 android:textStyle="bold" />
 
                         </LinearLayout>
+                    </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginLeft="24dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginRight="10dp"
                             android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            card_view:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:src="@drawable/ic_stock"
-                                app:tint="@color/available" />
+                                app:tint="@color/available"
+                                card_view:ignore="ContentDescription" />
 
                             <TextView
                                 android:id="@+id/product_quantity"
@@ -169,19 +198,54 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:textColor="@color/color_3"
-                                android:text="10"
+                                android:text="@string/project_id"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
 
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="18dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            card_view:ignore="UseCompoundDrawables">
+                            <!--call icon and text-->
+                            <ImageView
+                                android:id="@+id/product_call_icon"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:src="@android:drawable/stat_sys_phone_call"
+                                app:tint="@color/available"
+                                card_view:ignore="ContentDescription" />
+
+                            <TextView
+                                android:id="@+id/product_call"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:lines="1"
+                                android:textColor="@color/color_3"
+                                android:text="@string/project_id"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
                     </LinearLayout>
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
+                        android:layout_marginTop="10dp"
                         android:elevation="0dp"
-                        card_view:ignore="WebViewLayout">
+                        card_view:ignore="UnusedAttribute,WebViewLayout">
                         <WebView
                             android:id="@+id/product_description"
                             android:layout_width="match_parent"

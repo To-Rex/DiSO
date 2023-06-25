@@ -9,8 +9,8 @@ import com.app.ecommerce.R;
 @SuppressWarnings("deprecation")
 public class SharedPref {
 
-    private Context ctx;
-    private SharedPreferences default_prefence;
+    private final Context ctx;
+    private final SharedPreferences default_prefence;
 
     public SharedPref(Context context) {
         this.ctx = context;
@@ -22,35 +22,47 @@ public class SharedPref {
     }
 
     public void setYourName(String name) {
-        default_prefence.edit().putString(str(R.string.pref_title_name), name).apply();
+        default_prefence.edit().putString("Name", name).apply();
     }
 
     public String getYourName() {
-        return default_prefence.getString(str(R.string.pref_title_name), str(R.string.default_your_name));
+        return default_prefence.getString("Name", str(R.string.default_your_name));
     }
 
     public void setYourEmail(String name) {
-        default_prefence.edit().putString(str(R.string.pref_title_email), name).apply();
+        default_prefence.edit().putString("Email", name).apply();
     }
 
     public String getYourEmail() {
-        return default_prefence.getString(str(R.string.pref_title_email), str(R.string.default_your_email));
+        return default_prefence.getString("Email", str(R.string.default_your_email));
     }
 
     public void setYourPhone(String name) {
-        default_prefence.edit().putString(str(R.string.pref_title_phone), name).apply();
+        default_prefence.edit().putString("Phone Number", name).apply();
     }
 
     public String getYourPhone() {
-        return default_prefence.getString(str(R.string.pref_title_phone), str(R.string.default_your_phone));
+        return default_prefence.getString("Phone Number", str(R.string.default_your_phone));
     }
 
     public void setYourAddress(String name) {
-        default_prefence.edit().putString(str(R.string.pref_title_address), name).apply();
+        default_prefence.edit().putString("Address", name).apply();
     }
 
     public String getYourAddress() {
-        return default_prefence.getString(str(R.string.pref_title_address), str(R.string.default_your_address));
+        return default_prefence.getString("Address", str(R.string.default_your_address));
     }
 
+    public void setLanguage(String name) {
+        default_prefence.edit().putString("Language", name).apply();
+    }
+
+    public String getLanguage() {
+        return default_prefence.getString("Language", str(R.string.eng));
+    }
+
+    //clear all data
+    public void clearAllData() {
+        default_prefence.edit().clear().apply();
+    }
 }

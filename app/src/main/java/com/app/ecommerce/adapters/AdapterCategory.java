@@ -23,10 +23,10 @@ import java.util.List;
 
 public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyViewHolder> implements Filterable {
 
-    private Context context;
-    private List<Category> categoryList;
+    private final Context context;
+    private final List<Category> categoryList;
     private List<Category> categoryListFiltered;
-    private ContactsAdapterListener listener;
+    private final ContactsAdapterListener listener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView category_name, product_count;

@@ -66,17 +66,17 @@ import java.util.Locale;
 public class ActivityProductDetail extends AppCompatActivity {
 
     long product_id;
-    TextView txt_product_name, txt_product_price, txt_product_quantity;
-    private String product_name, product_image, category_name, product_status, currency_code, product_description;
+    TextView txt_product_name, txt_product_price, txt_product_quantity,txt_state1,product_call;
+    private String product_name, product_image, category_name, product_status, currency_code, product_description,getProduct_state,getProduct_phone;
     private double product_price;
     private int product_quantity;
     WebView txt_product_description;
-    ImageView img_product_image;
+    ImageView img_product_image,product_call_icon;
     Button btn_cart;
+    @SuppressLint("StaticFieldLeak")
     public static DBHelper dbhelper;
     final Context context = this;
     private CollapsingToolbarLayout collapsingToolbarLayout;
-    private AppBarLayout appBarLayout;
     double resp_tax;
     String resp_currency_code;
 
@@ -110,7 +110,7 @@ public class ActivityProductDetail extends AppCompatActivity {
 
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("");
-        appBarLayout = findViewById(R.id.appbar);
+        AppBarLayout appBarLayout = findViewById(R.id.appbar);
         appBarLayout.setExpanded(true);
 
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
@@ -144,6 +144,8 @@ public class ActivityProductDetail extends AppCompatActivity {
         product_status = intent.getStringExtra("product_status");
         currency_code = intent.getStringExtra("currency_code");
         category_name = intent.getStringExtra("category_name");
+        getProduct_state = intent.getStringExtra("state");
+        getProduct_phone = intent.getStringExtra("user_phone");
     }
 
     public void initComponent() {
@@ -152,6 +154,9 @@ public class ActivityProductDetail extends AppCompatActivity {
         txt_product_price = findViewById(R.id.product_price);
         txt_product_description = findViewById(R.id.product_description);
         txt_product_quantity = findViewById(R.id.product_quantity);
+        txt_state1 = findViewById(R.id.txt_state1);
+        product_call_icon = findViewById(R.id.product_call_icon);
+        product_call = findViewById(R.id.product_call);
         btn_cart = findViewById(R.id.btn_add_cart);
     }
 
@@ -163,6 +168,42 @@ public class ActivityProductDetail extends AppCompatActivity {
                 .load(Config.ADMIN_PANEL_URL + "/upload/product/" + product_image.replace(" ", "%20"))
                 .placeholder(R.drawable.ic_loading)
                 .into(img_product_image);
+
+        if(getProduct_state.isEmpty()||getProduct_phone.equals("null")||getProduct_phone.equals("")){
+            txt_state1.setVisibility(View.GONE);
+            product_call_icon.setVisibility(View.GONE);
+        }else {
+            txt_state1.setVisibility(View.VISIBLE);
+            product_call_icon.setVisibility(View.VISIBLE);
+        }
+
+        if(getProduct_state.equals("used")){
+            txt_state1.setText(context.getString(R.string.b_u));
+        }else {
+            txt_state1.setText(context.getString(R.string.b_n));
+        }
+
+        product_call_icon.setOnClickListener(v -> {
+            Toast.makeText(context, "Telefon raqam mavjud emas", Toast.LENGTH_SHORT).show();
+        });
+
+        product_call.setText(getProduct_phone);
+        System.out.println("phone"+getProduct_phone);
+        product_call.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle(this.getString(R.string.call));
+            builder.setMessage(this.getString(R.string.do_you_want_to_call_this_number));
+            builder.setPositiveButton(this.getString(R.string.dialog_option_yes), (dialog, which) -> {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                String p = "tel:" + getProduct_phone;
+                intent.setData(Uri.parse(p));
+                startActivity(intent);
+            });
+            builder.setNegativeButton(this.getString(R.string.dialog_option_no), (dialog, which) -> dialog.dismiss());
+            AlertDialog alert = builder.create();
+            alert.show();
+        });
+
 
         img_product_image.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), ActivityImageDetail.class);
@@ -227,7 +268,6 @@ public class ActivityProductDetail extends AppCompatActivity {
         } else {
             txt_product_description.loadDataWithBaseURL(null, text, mimeType, encoding, null);
         }
-
     }
 
     public void inputDialog() {

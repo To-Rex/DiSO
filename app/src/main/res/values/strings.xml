@@ -123,5 +123,18 @@
     <string name="product_quantity">product quantity</string>
     <string name="product_description">product description</string>
     <string name="category">Category</string>
+    <string name="english">English</string>
+    <string name="pref_title_language">Language</string>
+    <string name="eng">eng</string>
+    <string name="rus">ru</string>
+    <string name="uzb">uz</string>
+    <string name="uzb_crillic">uz_crillic</string>
+    <string name="russian">Russian</string>
+    <string name="o_zbekcha_latin">O\'zbekcha Latin</string>
+    <string name="uzbek_krill">Узбекча Криль</string>
+    <string name="b_u">Used</string>
+    <string name="b_n">New</string>
+    <string name="call">Call</string>
+    <string name="do_you_want_to_call_this_number">Do you want to call this number?</string>
 
 </resources>

@@ -122,7 +122,7 @@ public class FragmentHelp extends Fragment implements AdapterHelp.ContactsAdapte
 
         SearchManager searchManager = (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
         // listening to search query text change

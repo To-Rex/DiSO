@@ -12,22 +12,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5"/>
+        app:layout_constraintGuide_percent="0.5" />
 
     <EditText
         android:id="@+id/add_productAdd"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/all_radius2"
         android:hint="@string/product_name"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Autofill,TextFields" />
 
     <EditText
         android:id="@+id/add_priceAdd"
@@ -43,23 +44,25 @@
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_productAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/add_productAdd"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/add_quantityAdd"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:inputType="number"
         android:background="@drawable/all_radius2"
         android:hint="@string/product_quantity"
+        android:inputType="number"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:layout_marginStart="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/add_productAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/add_productAdd"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/add_descriptionAdd"
@@ -67,29 +70,31 @@
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/all_radius2"
         android:hint="@string/product_description"
+        android:inputType="textMultiLine"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:layout_marginEnd="10dp"
-        android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_quantityAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/add_quantityAdd"
+        tools:ignore="Autofill" />
+
     <TextView
         android:id="@+id/add_productCategory"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
-        android:gravity="center_vertical"
-        android:textSize="18sp"
-        android:textColor="@color/black"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/all_radius2"
+        android:gravity="center_vertical"
         android:hint="@string/category"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:layout_marginEnd="10dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_descriptionAdd" />
@@ -122,17 +127,17 @@
         android:id="@+id/cardView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:cardBackgroundColor="@color/white"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_productCategory">
+        app:layout_constraintTop_toBottomOf="@+id/add_used">
 
         <ImageView
             android:id="@+id/add_image"
@@ -142,6 +147,32 @@
             android:src="@drawable/empty_icon"
             tools:ignore="ContentDescription" />
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/add_used"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/all_radius3"
+        android:gravity="center"
+        android:text="@string/b_u"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/add_productCategory"
+        app:layout_constraintTop_toBottomOf="@+id/add_productCategory" />
+
+    <TextView
+        android:id="@+id/add_new"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="3dp"
+        android:background="@drawable/all_radius4"
+        android:gravity="center"
+        android:text="@string/b_n"
+        android:textColor="@color/available"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/add_used"
+        app:layout_constraintTop_toTopOf="@+id/add_used" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="50dp"
@@ -153,6 +184,7 @@
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="@+id/cardView2">
+
         <ImageView
             android:id="@+id/add_imageAdd"
             android:layout_width="40dp"
@@ -164,9 +196,6 @@
             tools:ignore="ContentDescription" />
 
     </androidx.cardview.widget.CardView>
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

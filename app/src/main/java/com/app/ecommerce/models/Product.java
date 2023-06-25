@@ -2,6 +2,24 @@ package com.app.ecommerce.models;
 
 public class Product {
 
+    /*
+    "product_id": "85",
+        "product_name": "1111111111",
+        "category_id": "5",
+        "product_price": "2000",
+        "product_status": "Available",
+        "product_image": "1686750867_S01E03.jpg",
+        "product_description": "<p>sfsdfsfsfsd</p>\r\n",
+        "product_quantity": "22",
+        "user_phone": "+998915005050",
+        "state": "used",
+        "category_name": "Датчики ",
+        "currency_id": "158",
+        "tax": "0",
+        "currency_code": "UZS",
+        "currency_name": "Uzbekistani sum"
+        */
+
     private long product_id;
     private String product_name;
     private String category_id;
@@ -13,6 +31,10 @@ public class Product {
     private String currency_code;
     private double tax;
     private int product_quantity;
+    private String user_phone;
+    private String state;
+    private String currency_id;
+    private String currency_name;
 
     public long getProduct_id() {
         return product_id;
@@ -56,5 +78,29 @@ public class Product {
 
     public int getProduct_quantity() {
         return product_quantity;
+    }
+
+    public String getUser_phone() {
+        return user_phone;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getCurrency_id() {
+        return currency_id;
+    }
+
+    public String getCurrency_name() {
+        return currency_name;
+    }
+
+    public void setProduct_id(long product_id) {
+        this.product_id = product_id;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 }

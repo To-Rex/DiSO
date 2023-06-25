@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.balysv.materialripple.MaterialRippleLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:mrl_rippleAlpha="0.2"
@@ -39,39 +40,58 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/constraintLayout"
-                android:orientation="vertical"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:padding="5dp">
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp">
 
                 <TextView
                     android:id="@+id/product_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_3"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
                     android:ellipsize="end"
+                    android:paddingEnd="10dp"
                     android:maxLines="2"
                     android:text="@string/menu_name"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/color_3"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textSize="16sp" />
+                    app:layout_constraintEnd_toStartOf="@+id/txt_state"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry" />
 
                 <TextView
                     android:id="@+id/product_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:text="@string/_15_usd"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/product_name" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/txt_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/b_u"
+                    android:textColor="@color/color_3"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

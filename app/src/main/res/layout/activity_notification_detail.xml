@@ -59,7 +59,8 @@
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/ic_loading"
-                                app:layout_collapseMode="parallax" />
+                                app:layout_collapseMode="parallax"
+                                card_view:ignore="ContentDescription" />
 
                         </com.balysv.materialripple.MaterialRippleLayout>
 
@@ -104,10 +105,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
-                            android:layout_marginLeft="18dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
-                            android:layout_marginRight="10dp"
                             android:text=""
                             android:textSize="22sp"
                             android:textStyle="bold" />
@@ -116,10 +115,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
-                            android:layout_marginLeft="18dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
-                            android:layout_marginRight="10dp"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
@@ -127,13 +124,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                card_view:ignore="UseCompoundDrawables">
 
                                 <ImageView
                                     android:layout_width="28dp"
                                     android:layout_height="28dp"
                                     android:src="@drawable/ic_tag_price"
-                                    android:tint="@color/txt_price_color" />
+                                    app:tint="@color/txt_price_color"
+                                    card_view:ignore="ContentDescription" />
 
                                 <TextView
                                     android:id="@+id/product_price"
@@ -152,17 +151,17 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:layout_marginLeft="24dp"
                                 android:layout_marginEnd="10dp"
-                                android:layout_marginRight="10dp"
                                 android:gravity="center_vertical"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                card_view:ignore="UseCompoundDrawables">
 
                                 <ImageView
                                     android:layout_width="28dp"
                                     android:layout_height="28dp"
                                     android:src="@drawable/ic_stock"
-                                    android:tint="@color/grey" />
+                                    app:tint="@color/grey"
+                                    card_view:ignore="ContentDescription" />
 
                                 <TextView
                                     android:id="@+id/product_quantity"

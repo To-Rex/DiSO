@@ -1,14 +1,12 @@
 package com.app.ecommerce.fragments;
 
 import static com.app.ecommerce.utilities.Constant.GET_CATEGORY;
-
 import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -25,7 +22,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.app.ecommerce.Config;
 import com.app.ecommerce.R;
@@ -37,12 +33,10 @@ import com.app.ecommerce.utilities.MyDividerItemDecoration;
 import com.app.ecommerce.utilities.Utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentCategory extends Fragment implements AdapterCategory.ContactsAdapterListener {
-
     private List<Category> categoryList;
     private AdapterCategory mAdapter;
     SwipeRefreshLayout swipeRefreshLayout = null;
@@ -68,10 +62,7 @@ public class FragmentCategory extends Fragment implements AdapterCategory.Contac
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //divider false leave room for footer view
         recyclerView.addItemDecoration(new MyDividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL, 0));
-
         recyclerView.setAdapter(mAdapter);
-
-
 
         fetchContacts();
         onRefresh();
@@ -90,7 +81,6 @@ public class FragmentCategory extends Fragment implements AdapterCategory.Contac
                     swipeRefreshLayout.setRefreshing(false);
                     Toast.makeText(getActivity(), getResources().getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
                 }
-
             }, 1500);
         });
     }
@@ -101,36 +91,24 @@ public class FragmentCategory extends Fragment implements AdapterCategory.Contac
                 Toast.makeText(getActivity(), getResources().getString(R.string.failed_fetch_data), Toast.LENGTH_LONG).show();
                 return;
             }
-
             List<Category> items = new Gson().fromJson(response.toString(), new TypeToken<List<Category>>() {
             }.getType());
-
-            // adding contacts to contacts list
             categoryList.clear();
             categoryList.addAll(items);
-
             // refreshing recycler view
             mAdapter.notifyDataSetChanged();
-        }, error -> {
-            // error in getting json
-            Log.e("INFO", "Error: " + error.getMessage());
-            Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-        });
-
+        }, error -> Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show());
         MyApplication.getInstance().addToRequestQueue(request);
     }
-
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search, menu);
-
         SearchManager searchManager = (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.search)
                 .getActionView();
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(requireActivity().getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
-
         // listening to search query text change
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -153,11 +131,9 @@ public class FragmentCategory extends Fragment implements AdapterCategory.Contac
 
     @Override
     public void onContactSelected(Category category) {
-        //Toast.makeText(getActivity(), "Selected: " + category.getCategory_name(), Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getActivity(), ActivityProduct.class);
         intent.putExtra("category_id", category.getCategory_id());
         intent.putExtra("category_name", category.getCategory_name());
         startActivity(intent);
     }
-
 }

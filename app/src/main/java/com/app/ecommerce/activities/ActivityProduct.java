@@ -41,12 +41,10 @@ import java.util.Objects;
 
 public class ActivityProduct extends AppCompatActivity implements AdapterProduct.ContactsAdapterListener {
 
-    private RecyclerView recyclerView;
     private List<Product> productList;
     private AdapterProduct mAdapter;
-    private SearchView searchView;
     SwipeRefreshLayout swipeRefreshLayout = null;
-    private String category_id, category_name;
+    private String category_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +61,14 @@ public class ActivityProduct extends AppCompatActivity implements AdapterProduct
 
         Intent intent = getIntent();
         category_id = intent.getStringExtra("category_id");
-        category_name = intent.getStringExtra("category_name");
+        String category_name = intent.getStringExtra("category_name");
 
         // toolbar fancy stuff
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(category_name);
 
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        recyclerView = findViewById(R.id.recycler_view);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         productList = new ArrayList<>();
         mAdapter = new AdapterProduct(this, productList, this);
 
@@ -140,7 +138,7 @@ public class ActivityProduct extends AppCompatActivity implements AdapterProduct
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
@@ -185,6 +183,8 @@ public class ActivityProduct extends AppCompatActivity implements AdapterProduct
         intent.putExtra("product_status", product.getProduct_status());
         intent.putExtra("currency_code", product.getCurrency_code());
         intent.putExtra("category_name", product.getCategory_name());
+        intent.putExtra("state", product.getState());
+        intent.putExtra("user_phone", product.getUser_phone());
         startActivity(intent);
     }
 
